@@ -25,3 +25,7 @@ Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F4
 2. ---------
 3. Download the [examples](https://drive.google.com/file/d/1rBYA-XJjp9Y93ywXcvRsEpWNB_xPoDUr/view?usp=share_link) folder and extract it
 4. --------
+
+## Sensors
+- [Thermoigrometer DHT11](https://components101.com/sensors/dht11-temperature-sensor) - for ambient temperature and humidity LEVEL SHIFTER NEEDED
+- [Photoresistor](https://en.wikipedia.org/wiki/Photoresistor) - for day light level
