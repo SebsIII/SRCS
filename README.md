@@ -1,5 +1,6 @@
 # STM32F411RE-weather-station
-The STM32F411RE is a 8KHz 50pins **microcontroller board** developed by STMicroelectronics.
+The STM32F411RE is a 8KHz 50pins **microcontroller board** developed by STMicroelectronics. <br>
+The board is divided in 2 smaller pcbs: STM32 and ST-LINK, respectively the microcontroller part and the comunication interface part, the ST-LINK can be cut apart to reduce the overall board size, at the same time the F411RE can still be interfaced with the other part by making some connections between the two, (6.1, 16)
 ## POWER IN (6.3, p20)
 - **USB** = 5v, 100-300mA max (6.3.1)
 - **3.3v** = 3.3v, NO USB INTERFACE (6.3.3)
