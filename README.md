@@ -19,12 +19,6 @@ The board is divided in 2 smaller pcbs: STM32 and ST-LINK, respectively the micr
 ![MORPHOpinout](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/F411RE_MORPHO_pinout.png)
 
 Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/nucleo64_Datasheet.pdf)
-## F411R3 focal points:
-- The VIN can be used as external power supply even if the usb is connected, but, it's important to **wire up the VIN pin before** plugging in the usb connector, <br>
-Useful when board is consuming more then 300mA from the usb port (usb power in limit).
-> [!CAUTION]
-> Check 6.3.3 on datasheet
--
 
 ## MbedStudio Examples
 1. Downlad [MbedStudio](https://os.mbed.com/studio/)
