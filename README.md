@@ -23,4 +23,10 @@ Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F4
 Useful when board is consuming more then 300mA from the usb port (usb power in limit).
 > [!CAUTION]
 > Check 6.3.3 on datasheet
-- 
+-
+
+## MbedStudio Examples
+1. Downlad [MbedStudio](https://os.mbed.com/studio/)
+2. ---------
+3. Download the [examples](https://drive.google.com/file/d/1rBYA-XJjp9Y93ywXcvRsEpWNB_xPoDUr/view?usp=share_link) folder and extract it
+4. --------
