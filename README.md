@@ -13,6 +13,8 @@ The STM32F411RE is a 8KHz 50pins **microcontroller board** developed by STMicroe
 - IN [USB, E5V, VIN] = **+5v OUT**
 - IN [3.3v] = **+3.3v, 500mA**
 
+## PINOUT
+![pinout](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/F411RE_pinout.png)
 
 Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/nucleo64_Datasheet.pdf)
 ## F411R3 focal points:
