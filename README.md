@@ -16,6 +16,7 @@ The board is divided in 2 smaller pcbs: STM32 and ST-LINK, respectively the micr
 
 ## PINOUT
 ![pinout](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/F411RE_pinout.png)
+![MORPHOpinout](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/F411RE_MORPHO_pinout.png)
 
 Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F411RE-weather-station/blob/main/datasheets/nucleo64_Datasheet.pdf)
 ## F411R3 focal points:
