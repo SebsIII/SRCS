@@ -30,3 +30,4 @@ Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F4
 - [TXS0108](https://www.ti.com/lit/ds/symlink/txs0108e.pdf?ts=1740033092920&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTXS0108E) - level shifter for 3.3v => 5v
 - [28BYJ-48](https://www.mouser.com/datasheet/2/758/stepd-01-data-sheet-1143075.pdf?srsltid=AfmBOor0JeeT5X12a_oRtEgDTfQxDhepoXjEc7EOESq1vM4Kv5rxR0na) - stepper motor
 - [ULN2003](https://www.hadex.cz/spec/m513.pdf) - stepper motor driver
+- [ESP01S](https://www.tutos.eu/vault/3506ESP8266_01S_Modul_Datenblatt.pdf) - WiFi module 2.4GHz
