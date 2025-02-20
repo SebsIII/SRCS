@@ -27,5 +27,6 @@ Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F4
 4. --------
 
 ## Sensors
-- [Thermoigrometer DHT11](https://components101.com/sensors/dht11-temperature-sensor) - for ambient temperature and humidity LEVEL SHIFTER NEEDED
-- [Photoresistor](https://en.wikipedia.org/wiki/Photoresistor) - for day light level
+- [TXS0108](https://www.ti.com/lit/ds/symlink/txs0108e.pdf?ts=1740033092920&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTXS0108E) - level shifter for 3.3v => 5v
+- [28BYJ-48](https://www.mouser.com/datasheet/2/758/stepd-01-data-sheet-1143075.pdf?srsltid=AfmBOor0JeeT5X12a_oRtEgDTfQxDhepoXjEc7EOESq1vM4Kv5rxR0na) - stepper motor
+- [ULN2003](https://www.hadex.cz/spec/m513.pdf) - stepper motor driver
