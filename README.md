@@ -2,7 +2,7 @@
 > [!Warning]
 > I need a better, more exiting project name
 
-The STM32F411RE based **Satellite RF signals reciver control station** for NOAA satellites to maximize receiving quality of weather satellites broadcasts to get local satellite's views images.
+The STM32F401RE based **Satellite RF signals reciver control station** for NOAA satellites to maximize receiving quality of weather satellites broadcasts to get local satellite's views images.
 <h6>I definitely need a better name, By Sebs_</h6>
 
 ## Description
