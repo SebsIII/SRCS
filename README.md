@@ -15,6 +15,14 @@ The control station is made primarely of 2 modules:
 The NOAA satellites are weather satellites (add more info).
 There are 3:
 
-- NOAA15
+<table>
+<tr><td>Name</td><td>NORAD ID</td><td>Freq MHz</td></tr>
+<tr><td>NOAA 15</td><td><a href="https://www.n2yo.com/satellite/?s=25338">25338</a></td><td>137.620</td></td></tr>
+<tr><td>NOAA 18</td><td><a href="https://www.n2yo.com/satellite/?s=28654">28654</a></td><td>137.9125</td></tr>
+<tr><td>NOAA 19</td><td><a href="https://www.n2yo.com/satellite/?s=33591">33591</a></td><td>137.620</td></tr>
+</table>
+
+
+- NOAA15 = 25338 
 - NOAA18
 - NOAA19
