@@ -12,7 +12,8 @@ The control station is made primarely of 2 modules:
 
 ## NOAA's
 
-The NOAA ([National Oceanic Atmospheric Atministration](https://www.noaa.gov/)) satellites are weather satellites (add more info).
+The NOAA ([National Oceanic Atmospheric Atministration](https://www.noaa.gov/)) is a US  agecy that studies how weather changes our planet, both on it's surface and under the seas 
+satellites are weather satellites (add more info).
 There are mainly 3:
 
 <table>
