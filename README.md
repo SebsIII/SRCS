@@ -1,6 +1,4 @@
 # SRCS - Satellite Receiver Control Station
-> [!Warning]
-> I need a better, more exiting project name
 
 The STM32F401RE based **Satellite RF signals reciver control station** for NOAA satellites to maximize receiving quality of weather satellites broadcasts to get local satellite's views images.
 <h6>I definitely need a better name, By Sebs_</h6>
@@ -10,7 +8,7 @@ The control station is made primarely of 2 modules:
 - The motorized antenna module : The **core** of the control station and the actual receiver, it's made of a [dipole antenna](https://en.wikipedia.org/wiki/Dipole_antenna) tuned at NOAA's frequencies in horizontal polarization connected to a [28BYJ-48](https://www.mouser.com/datasheet/2/758/stepd-01-data-sheet-1143075.pdf?srsltid=AfmBOor0JeeT5X12a_oRtEgDTfQxDhepoXjEc7EOESq1vM4Kv5rxR0na) stepper motor.
 - The weather data module - The secondary part of the SRCS that gets weather data that will be analyzed by the [MCU](https://en.wikipedia.org/wiki/Microcontroller).
 
-## NOAA's satellites
+## 🛰️ NOAA's satellites
 
 The NOAA ([National Oceanic Atmospheric Atministration](https://www.noaa.gov/)) is a US  agecy that studies how weather changes our planet, both on it's surface and under the seas. <br>
 Other then other missions, it made a [campaign of polar-orbiting, non-geosynchronous, environmental satellites](https://www.n2yo.com/satellites/?c=4), from NOAA-1 up to NOAA-21. <br>
@@ -23,3 +21,18 @@ Those "sounds" will eventually need to be converted into .WAV files and thed dec
 <tr><td>NOAA 18</td><td><a href="https://www.n2yo.com/satellite/?s=28654">28654</a></td><td>137.9125</td></tr>
 <tr><td>NOAA 19</td><td><a href="https://www.n2yo.com/satellite/?s=33591">33591</a></td><td>137.1</td></tr>
 </table>
+
+## 1st Module: The motorized antenna
+
+> [!WARNING]
+> Regular linear dipole or V dipole?
+> eventually update 
+
+The first module is made of two parts, the **dipole antenna** and the **motorized support**:
+- The dipole antenna is the effective receiver of the SRCS, it's a horizontally polazied, omnidirectiona, **dipole antenna** tuned at 137.5 MHz (average downlink     frequency of NOAA-15,18,19 *). <br>
+  (See the [antenna]() MD file for more info)
+  
+
+
+
+*The bandwidth of the 137.5 MHz dipole antenna offers **enough bandwindth** to get all the 137.1, 137.620 and 137.9125 MHz frequencies
