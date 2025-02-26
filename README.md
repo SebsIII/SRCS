@@ -35,7 +35,7 @@ The first module is made of two parts, the **dipole antenna** and the **motorize
   
 - The motorized support is where the antenna is mounted and the part that will, indeed, **rotate** the antenna itself while the satellite is passing near the SRCS 
   to ensure the highest quality receiving of data reception of the dipole. <br>
-  Its mainly composed of a **(NAME) stepper motor**, a **gear set** to reduce the motor speed and to reduce the minimum step angle to get the smallest angle of 
+  Its mainly composed of a **28BYJ-48 stepper motor**, a **gear set** to reduce the motor speed and to reduce the minimum step angle to get the smallest angle of 
   rotation from the motor output chassis, the **antenna mount** and the **BFT wall-connector output** from the antenna
   
 <h6>* The bandwidth of the 137.5 MHz dipole antenna offers enough bandwindth to get all the 137.1, 137.620 and 137.9125 MHz frequencies </h6>
