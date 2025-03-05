@@ -32,4 +32,5 @@ Chapter,paragraph and page in the [datasheet](https://github.com/SebsIII/STM32F4
 - [ULN2003](https://www.hadex.cz/spec/m513.pdf) - stepper motor driver
 - [ESP01S](https://www.tutos.eu/vault/3506ESP8266_01S_Modul_Datenblatt.pdf) - WiFi module 2.4GHz
 - [DHT11](https://components101.com/sensors/dht11-temperature-sensor) - temperature and humidity sensor 
--[ASA5600](https://files.seeedstudio.com/wiki/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/res/Magnetic%20Rotary%20Position%20Sensor%20AS5600%20Datasheet.pdf)
+-
+[ASA5600](https://files.seeedstudio.com/wiki/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/res/Magnetic%20Rotary%20Position%20Sensor%20AS5600%20Datasheet.pdf) - magnetic encoder
