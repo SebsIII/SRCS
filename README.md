@@ -35,7 +35,7 @@ The first module is made of two parts, the **dipole antenna** and the **motorize
   
 - The motorized support is where the antenna is mounted and the part that will, indeed, **rotate** the antenna itself while the satellite is passing near the SRCS 
   to ensure the highest quality receiving of data reception of the dipole. <br>
-  Its mainly composed of a **28BYJ-48 stepper motor**, a **gear box** to reduce the motor speed and to reduce the minimum step angle to get the smallest angle of 
-  rotation from the motor output chassis, an [AS5600 magnetic encoder](https://files.seeedstudio.com/wiki/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/res/Magnetic%20Rotary%20Position%20Sensor%20AS5600%20Datasheet.pdf) the **antenna mount** and the **BFT wall-connector output** from the antenna
+  Its mainly composed of a [28BYJ-48 stepper motor](https://www.mouser.com/datasheet/2/758/stepd-01-data-sheet-1143075.pdf?srsltid=AfmBOor0JeeT5X12a_oRtEgDTfQxDhepoXjEc7EOESq1vM4Kv5rxR0na), a **gear box** to reduce the motor speed and to reduce the minimum step angle to get the smallest angle of 
+  rotation from the motor output chassis, an [AS5600 magnetic encoder](https://files.seeedstudio.com/wiki/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/res/Magnetic%20Rotary%20Position%20Sensor%20AS5600%20Datasheet.pdf) the **antenna mount** and the **BNC wall-connector output** from the antenna
   
 <h6>* The bandwidth of the 137.5 MHz dipole antenna offers enough bandwindth to get all the 137.1, 137.620 and 137.9125 MHz frequencies </h6>
