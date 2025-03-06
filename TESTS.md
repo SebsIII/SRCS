@@ -5,6 +5,7 @@
 - [ ] ULN2003
 - [ ] ESP01S
 - [X] DHT11 - OK
+- [X] Photoresistor
 
 ## WIREUPS
 
