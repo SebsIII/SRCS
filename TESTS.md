@@ -4,7 +4,7 @@
 - [ ] 28BYJ-48
 - [ ] ULN2003
 - [ ] ESP01S
-- [ ] DHT11
+- [X] DHT11 - OK
 
 ## WIREUPS
 
