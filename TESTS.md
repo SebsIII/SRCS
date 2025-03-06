@@ -9,9 +9,6 @@
 ## WIREUPS
 
 - [X] [STM32 TO ARDUINO IDE](https://www.youtube.com/watch?v=yssEiMLGH90)
-- [ ] STM32 to TXS0108E
-- [ ] [DHT11 to arduino (after logic shifter)](https://projecthub.arduino.cc/arcaegecengiz/using-dht11-12f621) <br>
-        Each pin connected to the logic level shifter 
 
 ## DHT11
 based on [this tutorial](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/) with necessary changes
