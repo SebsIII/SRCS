@@ -35,3 +35,12 @@ The first module is made of two parts, the **dipole antenna** and the **motorize
   rotation from the motor output chassis, an [AS5600 magnetic encoder](https://files.seeedstudio.com/wiki/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/res/Magnetic%20Rotary%20Position%20Sensor%20AS5600%20Datasheet.pdf) the **antenna mount** and the **BNC wall-connector output** from the antenna
   
 <h6>* The bandwidth of the 137.5 MHz dipole antenna offers enough bandwindth to get all the 137.1, 137.620 and 137.9125 MHz frequencies </h6>
+
+## 2nd Module: Weather data Module
+
+The second module is the weather monitor system, which is the part which goal is to gather weather data that will later on, be analyzed by the MCU. <br>
+It's composed of various sensors, including: [DHT11]() for **temperature and humidity**, a light sensor, to gather **ambient light level** and an [anemometer] for **wind speed**. <br>
+The combination of those data, will be used to **monitor and predict how currend and future weather is/will be**. <br>
+Those info are necessary to better understand how the weather will be during the NOAA receiving sessions, since those conditions can impact on the reciving quality and/or damage some components if used under certain situations, like rain or extreme wind storms.
+
+
