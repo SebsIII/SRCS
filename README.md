@@ -47,7 +47,7 @@ Those info are necessary to better understand how the weather will be during the
 
 The complete system is the following: <br>
 
-**The STM32F401RE, gathers the weather data and sends them to a web site hosted on itself**, thanks to its [ethernet shield](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.mouser.com/catalog/specsheets/a000056_datasheet.pdf%3Fsrsltid%3DAfmBOopf6pBYnQKdG1FfPxTF9w15WcyJ-tHJuvzqldRgIKXWHoZ6PHKB&ved=2ahUKEwjLlqidyImMAxWehf0HHQiAEAcQFnoECCYQAQ&usg=AOvVaw3l6hrLwbIgpWo4JkOq2vAo) which can allow it to connect to LAN, and thus, the **internet**. <br>
+- **The STM32F401RE, gathers the weather data and sends them to a web site hosted on itself**, thanks to its [ethernet shield](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.mouser.com/catalog/specsheets/a000056_datasheet.pdf%3Fsrsltid%3DAfmBOopf6pBYnQKdG1FfPxTF9w15WcyJ-tHJuvzqldRgIKXWHoZ6PHKB&ved=2ahUKEwjLlqidyImMAxWehf0HHQiAEAcQFnoECCYQAQ&usg=AOvVaw3l6hrLwbIgpWo4JkOq2vAo) which can allow it to connect to LAN, and thus, the **internet**. <br>
 Then, once every 5 minutes, the MCU sends a HTTP REQUEST to the [N2YO API](https://www.n2yo.com/api/) to check if there are any NOAA passes in the next 5 mins, if *there are* the MCU will initialize the *receiving protocol* instructions
 
 
