@@ -1,8 +1,8 @@
 # SENSORS' TESTS
 
-- [ ] TXS0108E
-- [ ] 28BYJ-48
-- [ ] ULN2003
+- [X] TXS0108E
+- [x] 28BYJ-48
+- [x] ULN2003
 - [ ] ESP01S
 - [X] DHT11 - OK
 - [X] Photoresistor
