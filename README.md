@@ -39,8 +39,17 @@ The first module is made of two parts, the **dipole antenna** and the **motorize
 ## 2nd Module: Weather data Module
 
 The second module is the weather monitor system, which is the part which goal is to gather weather data that will later on, be analyzed by the MCU. <br>
-It's composed of various sensors, including: [DHT11]() for **temperature and humidity**, a light sensor, to gather **ambient light level** and an [anemometer] for **wind speed**. <br>
+It's composed of various sensors, including: [DHT11]() for **temperature and humidity**, a light sensor, to gather **ambient light level** and an anemometer for **wind speed**. <br>
 The combination of those data, will be used to **monitor and predict how currend and future weather is/will be**. <br>
 Those info are necessary to better understand how the weather will be during the NOAA receiving sessions, since those conditions can impact on the reciving quality and/or damage some components if used under certain situations, like rain or extreme wind storms.
+
+## The system
+
+The complete system is the following: <br>
+
+**The STM32F401RE, gathers the weather data and sends them to a web site hosted on itself**, thanks to its [ethernet shield](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.mouser.com/catalog/specsheets/a000056_datasheet.pdf%3Fsrsltid%3DAfmBOopf6pBYnQKdG1FfPxTF9w15WcyJ-tHJuvzqldRgIKXWHoZ6PHKB&ved=2ahUKEwjLlqidyImMAxWehf0HHQiAEAcQFnoECCYQAQ&usg=AOvVaw3l6hrLwbIgpWo4JkOq2vAo) which can allow it to connect to LAN, and thus, the **internet**. <br>
+Then, once every 5 minutes, the MCU sends a HTTP REQUEST to the [N2YO API](https://www.n2yo.com/api/) to check if there are any NOAA passes in the next 5 mins, if *there are* the MCU will initialize the *receiving protocol* instructions
+
+
 
 
