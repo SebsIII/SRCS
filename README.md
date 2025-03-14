@@ -51,7 +51,7 @@ The complete system is the following: <br>
 
 - PID2: Once *every 5 minutes*, the MCU sends a HTTP REQUEST to the [N2YO API](https://www.n2yo.com/api/) to check if there are any NOAA passes in the next 5 mins, if **there are** the MCU will initialize the *receiving protocol* instructions, by rotating the antenna to the start magnetic declination angle, calculating the necessary variables, and then waiting for the start time to came, once it does, the PID3 starts.
 
-- PID3: The MCU will start the rotation to align the antenna and the satellite, mantaining the ideal angle hold the horizontal polarization with the satellite's TX antenna.
+- PID3: The MCU will start the rotation to align the antenna and the satellite, then it will mantain the ideal angle to hold the horizontal polarization with the satellite's TX antenna.
 
 
 
