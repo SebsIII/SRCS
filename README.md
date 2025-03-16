@@ -64,7 +64,7 @@ The Power management system PMS is what handles the power management of the enti
     <td>Max Current [mA]</td>
     </tr> 
     <tr>
-    <td>STM32F401RE</td>
+    <td>**DHT11**</td>
     <td> 5 </td>
     <td> 6 </td>
     </tr>
