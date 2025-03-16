@@ -53,6 +53,15 @@ The complete system is the following: <br>
 
 - PID3: The MCU will start the rotation to align the antenna and the satellite, then it will mantain the ideal angle to hold the horizontal polarization with the satellite's TX antenna.
 
+## Power management 
 
+The Power management system PMS is what handles the power management of the entire SRCS.
+
+<tr>
+<td> 1 </td>
+<td> 2 </td>
+<td> 3 </td>
+
+</tr> 
 
 
