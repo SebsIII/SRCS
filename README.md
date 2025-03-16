@@ -58,10 +58,11 @@ The complete system is the following: <br>
 The Power management system PMS is what handles the power management of the entire SRCS.
 
 <table>
-<td>
-<tr> 1 </tr>
-<tr> 2 </tr>
-<tr> 3 </tr>
 
-</td> 
+<tr>
+<td> 1 </td>
+<td> 2 </td>
+<td> 3 </td>
+
+</tr> 
 </table>
