@@ -75,8 +75,8 @@ The Power management system PMS is what handles the power management of the enti
     </tr>
     <tr>
     <td><b>28BYJ-48</b></td>
-    <td> 0.5 </td>
-    <td> 2.5 </td>
+    <td>240</td>
+    <td> - </td>
     </tr>
     
 
