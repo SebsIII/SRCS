@@ -96,4 +96,5 @@ The Power management system PMS is what handles the power management of the enti
     </tr>
 </table>
 The whole System will be powered by a <b>12v 7AH Lead-acid battery</b> , which is charged with a solar panel during the day. <br>
-The 
+The 7AH battery can hold up to XXXX hours with a single charge, allowing the SRCS to work even when the light isn't enough to charge the system complitely.
+
