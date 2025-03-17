@@ -94,8 +94,6 @@ The Power management system PMS is what handles the power management of the enti
     <td> 12.8 </td>
     <td> 258.8 </td>
     </tr>
-    
-    
-
-
 </table>
+The whole System will be powered by a **12v 7AH Lead-acid battery**, which is charged with a solar panel during the day. <br>
+The 
