@@ -64,12 +64,12 @@ The Power management system PMS is what handles the power management of the enti
     <td>Max Current [mA]</td>
     </tr> 
     <tr>
-    <td>**DHT11**</td>
+    <td><b>DHT11</b></td>
     <td> 0.5 </td>
     <td> 2.5 </td>
     </tr>
     <tr>
-    <td>**28BYJ-48**</td>
+    <td><b>28BYJ-48</b></td>
     <td> 0.5 </td>
     <td> 2.5 </td>
     </tr>
