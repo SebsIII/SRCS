@@ -64,32 +64,37 @@ The Power management system PMS is what handles the power management of the enti
     <td>Max Current [mA]</td>
     </tr> 
     <tr>
-    <td><b>STM32F401RE</b></td>
+    <td>STM32F401RE</td>
     <td>12.3</td>
     <td>16.3</td>
     </tr>
     <tr>
-    <td><b>DHT11</b></td>
+    <td>DHT11</td>
     <td> 0.5 </td>
     <td> 2.5 </td>
     </tr>
     <tr>
-    <td><b>28BYJ-48</b></td>
+    <td>28BYJ-48</td>
     <td> - </td>
     <td> 240 </td>
     </tr>
-    <td><b>ULN2003</b></td>
+    <td>ULN2003</td>
     <td> - </td>
     <td> - </td>
     </tr>
-    <td><b>TXS108E</b></td>
+    <td>TXS108E</td>
     <td> - </td>
     <td> - </td>
     </tr>
-    <td><b>Photoresistor</b></td>
+    <td>Photoresistor</td>
     <td> - </td>
     <td> - </td>
     </tr>
+    <td><b>TOTAL</b></td>
+    <td> 12.8 </td>
+    <td> 258.8 </td>
+    </tr>
+    
     
 
 
