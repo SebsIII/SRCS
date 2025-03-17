@@ -82,7 +82,11 @@ The Power management system PMS is what handles the power management of the enti
     <td> - </td>
     <td> - </td>
     </tr>
-    <td><b>TSX108E</b></td>
+    <td><b>TXS108E</b></td>
+    <td> - </td>
+    <td> - </td>
+    </tr>
+    <td><b>Photoresistor</b></td>
     <td> - </td>
     <td> - </td>
     </tr>
