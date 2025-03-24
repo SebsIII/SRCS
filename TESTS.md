@@ -6,7 +6,7 @@
 - [ ] ESP01S
 - [X] DHT11 - OK
 - [X] Photoresistor
-- [ ] W5100 
+- [X] W5100 
 
 ## WIREUPS
 
