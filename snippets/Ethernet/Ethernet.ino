@@ -1,68 +1,52 @@
 /*
-  Web Server
+  SRCS Web Server stock
+  based on Arduino built-in example Web server examples
 
- A simple web server that shows the value of the analog input pins.
- using an Arduino Wiznet Ethernet shield.
-
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
- * Analog inputs attached to pins A0 through A5 (optional)
-
- created 18 Dec 2009
- by David A. Mellis
- modified 9 Apr 2012
- by Tom Igoe
- modified 02 Sept 2015
- by Arturo Guadalupi
- 
+  ETH SHIELD -> STM32
+  
+     SCK MISO
+      | |
+  [ - - -] ICSP INTERFACE
+  [ - - -]
+      |
+    MOSI
+  
+  MISO -> D12
+  MOSI -> D11
+  SCK -> D13
  */
 
 #include <SPI.h>
 #include <Ethernet.h>
 
-// Enter a MAC address and IP address for your controller below.
-// The IP address will be dependent on your local network:
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
-IPAddress ip(192, 168, 1, 177);
+IPAddress ip(192, 168, 1, 177);   //static IP 
 
-// Initialize the Ethernet server library
-// with the IP address and port you want to use
-// (port 80 is default for HTTP):
 EthernetServer server(80);
 
 void setup() {
-  // You can use Ethernet.init(pin) to configure the CS pin
-  Ethernet.init(10);  // Most Arduino shields
-  //Ethernet.init(5);   // MKR ETH shield
-  //Ethernet.init(0);   // Teensy 2.0
-  //Ethernet.init(20);  // Teensy++ 2.0
-  //Ethernet.init(15);  // ESP8266 with Adafruit Featherwing Ethernet
-  //Ethernet.init(33);  // ESP32 with Adafruit Featherwing Ethernet
+  Ethernet.init(10);    //CS PIN
 
-  // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ; // can i remove that?
   }
-  Serial.println("Ethernet WebServer Example");
+  Serial.println("SRCS-Web-Server");
 
-  // start the Ethernet connection and the server:
   Ethernet.begin(mac, ip);
 
-  // Check for Ethernet hardware present
   if (Ethernet.hardwareStatus() == EthernetNoHardware) {
-    Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
+    Serial.println("Ethernet shield was not found.");
     while (true) {
-      delay(1); // do nothing, no point running without Ethernet hardware
+      delay(100);
     }
   }
   if (Ethernet.linkStatus() == LinkOFF) {
     Serial.println("Ethernet cable is not connected.");
   }
 
-  // start the server
   server.begin();
   Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
@@ -92,9 +76,8 @@ void loop() {
           client.println();
           client.println("<!DOCTYPE HTML>");
           client.println("<html>");
-          // output the value of each analog input pin
           
-          client.println("Never kill the inner child.");
+          client.println("<a style='color:red;'> SRCS </a>");
 
           client.println("</html>");
           break;
