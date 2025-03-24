@@ -1,7 +1,6 @@
 # SRCS - Satellite Receiver Control Station
 
 The STM32F401RE based **Satellite RF signals reciver control station** for NOAA satellites to maximize receiving quality of weather satellites broadcasts to get local satellite's views images.
-<h6>I definitely need a better name, By Sebs_</h6>
 
 ## Description
 The control station is made primarely of 2 modules:
