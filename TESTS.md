@@ -22,3 +22,4 @@
 - minimal interface
 - less images
 - css,js in the same file?
+- file in SD
