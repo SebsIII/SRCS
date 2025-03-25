@@ -14,3 +14,11 @@
 - [X] [DHT11](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/), adapted
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
 
+##LIGHTWEIGHT WEB PAGE
+- WeBP images
+- no comments or useless data in final code
+- web cache for images?
+- local fonts?
+- minimal interface
+- less images
+- css,js in the same file?
