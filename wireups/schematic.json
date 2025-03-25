@@ -1,0 +1,90 @@
+{
+    "arduino connectors":{
+        "+3.3v":[
+            "TXS108E Va",
+            "TXS108E OE",
+            "PHOTO 1"
+        ],
+        "5v":[
+            "Ethernet shield",
+            "DHT11 +",
+            "TXS108E Vb"
+        ],
+        "GND":[
+            "5V BUCK OUT-",
+            "7-9V BUCK OUT-",
+            "DHT11 -",
+            "ANEMO Diode anode",
+            "PHOTO 4.7K 2",
+            "ULN2003 -",
+            "TXS108E GND"
+        ],
+        "VIN":"7-9V OUT+",
+        "D2":"ANEMO +",
+        "D3":"DHT11 DATA",
+        "D4":"SD CS",
+        "D5":"TXS108E A4",
+        "D6":"TXS108E A3",
+        "D7":"TXS108E A2",
+        "D8":"TXS108E A1",
+        "D9":"PHOTO DATA",
+        "D10":"Ethernet shield CS",
+        "ICSP":{
+            "SCK":"D13",
+            "MIS":"D12",
+            "MOSI":"D11"
+        }
+
+    },
+    "7-9V":{
+        "IN+":"BATT +",
+        "IN-":"BATT -",
+        "OUT+":"STM32 VIN",
+        "OUT-":"GND"
+    },
+    "5V":{
+        "IN+":"BATT +",
+        "IN-":"BATT -",
+        "OUT+":"ULN2003 +",
+        "OUT-":["GND","ULN2003 -"]
+    },
+    "DHT11":{
+        "+":"STM32 +5V",
+        "-":"GND",
+        "DATA":"D3"
+    },
+    "ANEMO":{
+        "-":"GND",
+        "+":"ANEMO Diode cathode"
+    },
+    "TXS108E":{
+       "Va":"STM32 +3.3V",
+       "Vb":"STM32 +5V",
+       "IN":{
+        "A1":"STM32 D8",
+        "A2":"STM32 D7",
+        "A3":"STM32 D6",
+        "A4":"STM32 D5"
+       },
+       "OUT":{
+        "B1":"ULN2003 IN1",
+        "B2":"ULN2003 IN2",
+        "B3":"ULN2003 IN3",
+        "B4":"ULN2003 IN4"
+       } 
+    },
+    "ULN2003":{
+        "IN1":"TXS108E B1",
+        "IN2":"TXS108E B2",
+        "IN3":"TXS108E B3",
+        "IN4":"TXS108E B4",
+        "+":"5V OUT +",
+        "-":"5V OUT -",
+        "STEPPER CONNECTOR":"28BYJ-48 CONNECTOR"
+    },
+    "PHOTO":{
+        "1":"PHOTORES 1",
+        "2":["PHOTORES 2","4.7K 1","STM32 D9"],
+        "3":"4.7K 2"
+    }
+}
