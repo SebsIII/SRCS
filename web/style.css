@@ -1,7 +1,9 @@
+html{
+    margin: 0px;
+}
+
 body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(85, 84, 84);
-    color: white;
+    background-image: url(img/backgroung.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
