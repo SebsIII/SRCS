@@ -27,3 +27,5 @@
 - background and static texts as background image (one for mobile and one for desktop)
 ## Web data
 - font - merryweather
+- [canva background](https://www.canva.com/design/DAGjF7-2_sY/XArurzRtQZ8dEjKSA_NvSw/edit)
+
