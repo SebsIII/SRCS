@@ -25,3 +25,5 @@
 - css,js in the same file?
 - file in SD
 - background and static texts as background image (one for mobile and one for desktop)
+## Web data
+- font - merryweather
