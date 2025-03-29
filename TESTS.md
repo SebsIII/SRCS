@@ -15,6 +15,7 @@
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
 
 ## LIGHTWEIGHT WEB PAGE
+- **[Design](https://www.figma.com/community/file/1279202001478934518/weather-dashboard)**
 - WeBP images
 - no comments or useless data in final code
 - web cache for images?
@@ -23,3 +24,4 @@
 - less images
 - css,js in the same file?
 - file in SD
+- background and static texts as background image (one for mobile and one for desktop)
