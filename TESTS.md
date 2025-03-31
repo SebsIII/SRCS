@@ -17,7 +17,7 @@
 - [ ] [NodeJS on  stm32](https://www.instructables.com/NodeJs-and-Arduino/)
 
 ## LIGHTWEIGHT WEB PAGE
-- **[Design](https://www.figma.com/community/file/1279202001478934518/weather-dashboard)**
+- **[Design]([https://www.figma.com/community/file/1279202001478934518/weather-dashboard](https://dribbble.com/shots/20288381-Weather-Forecasting-Web-App-UI))**
 - WeBP images
 - no comments or useless data in final code
 - web cache for images?
