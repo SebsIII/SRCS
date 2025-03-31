@@ -13,7 +13,7 @@
 - [X] [STM32 TO ARDUINO IDE](https://www.youtube.com/watch?v=yssEiMLGH90)
 - [X] [DHT11](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/), adapted
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
-- [ ] What if? stm32 hosted web server only handles HTTP GET requests and a different website is hosted on a different more performant domain, that myght mean that the web page could be "heavier"?
+- [ ] What if? stm32 hosted web server only handles HTTP GET requests and a different website is hosted on a different more performant domain, that myght mean that the web page could be "heavier"? [Expsress, node.js](https://expressjs.com/)
 
 ## LIGHTWEIGHT WEB PAGE
 - **[Design](https://www.figma.com/community/file/1279202001478934518/weather-dashboard)**
