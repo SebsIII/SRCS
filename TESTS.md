@@ -15,6 +15,8 @@
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
 - [ ] What if? stm32 hosted web server only handles HTTP GET requests and a different website is hosted on a different more performant domain, that myght mean that the web page could be "heavier"? [Expsress, node.js](https://expressjs.com/)
 - [ ] [NodeJS on  stm32](https://www.instructables.com/NodeJs-and-Arduino/)
+
+## HTTP GET request handler
 ``` cpp
 
 #include <SPI.h>
@@ -123,6 +125,18 @@ void sendDefaultResponse(EthernetClient client) {
   client.println("Page Not Found");
 }
 
+```
+## string to log txt file
+``` cpp
+SD.begin(cspin)
+log = SD.open("log.txt", FILE_WRITE);
+  
+  // if the file opened okay, write to it:
+  if (log) {
+    Serial.print("Writing to test.txt...");
+    log.println("testing 1, 2, 3.");
+	// close the file:
+    log.close();
 ```
 
 ## LIGHTWEIGHT WEB PAGE
