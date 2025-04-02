@@ -46,6 +46,9 @@ header{
     font-size: 30px;
     margin: 0px;
 }
+#SRCS-title:hover{
+    cursor: pointer;
+}
 
 #Dashboard-title{
     font-family: Questrial;
@@ -62,6 +65,7 @@ main{
     background-image: linear-gradient(to right, rgba(166, 166, 166,0.7), rgba(255, 255, 255,0.7));
     fill-opacity: 10%;
     border-radius: 32px;
+    transition: all 0.7s;
 }
 
 #current-weather-text{
@@ -82,8 +86,8 @@ main{
 #main-text{
     position: absolute;
     height: fit-content;
-    top: 20vh;
-    left: 40vw;
+    top: 10vh;
+    left: 30vw;
     margin-left: 16px;
 }
 
