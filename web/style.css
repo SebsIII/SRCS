@@ -1,0 +1,259 @@
+@font-face { /*Questrial*/
+    font-family: "Questrial";
+    src: url(/assets/Questrial-Regular.ttf) format("truetype");
+}
+@font-face { /*Oswald*/
+    font-family: "Oswald";
+    src: url(/assets/Oswald-Regular.ttf) format("truetype");
+}
+@font-face { /*Allura*/
+    font-family: "Allura";
+    src: url(/assets/Allura-Regular.ttf) format("truetype");
+}
+
+:root{
+    --dark-gray: #415252;
+    --gray-green: #5d6e71;
+    --darkest-gray: #303f3d;
+}
+
+html{
+    margin: 0px;
+    overflow: hidden;
+    font-family: Questrial;
+}
+
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.white{
+    color: #FFFFFF;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+    height: 5vh;
+    margin: 0px;
+    position: absolute;
+    left: 13vw;
+    top: 5vh;
+}
+
+#SRCS-title{
+    font-family: Oswald;
+    font-size: 30px;
+    margin: 0px;
+}
+#SRCS-title:hover{
+    cursor: pointer;
+}
+
+#Dashboard-title{
+    font-family: Questrial;
+    font-size: 18px; 
+    margin: 0px 0px 0px 8px;
+}
+
+main{
+    height: 80vh;
+    width: 30vw;
+    position: absolute;
+    top: 10vh;
+    left: 10vw;
+    background-image: linear-gradient(to right, rgba(166, 166, 166,0.7), rgba(255, 255, 255,0.7));
+    fill-opacity: 10%;
+    border-radius: 32px;
+    transition: all 0.7s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#current-weather-text{
+    font-size: 20px;
+    margin: 0px;
+}
+
+#date-text{
+    font-size: 24px;
+    margin: 0px;
+}
+
+#weather-status{
+    font-size: 120px;
+    margin: 0px;
+}
+
+#main-text{
+    position: absolute;
+    height: fit-content;
+    top: 10vh;
+    left: 30vw;
+    margin-left: 16px;
+}
+
+#day-time-text{
+    position: absolute;
+    height: min-content;
+    margin: 5vh;
+    right: 3vw;
+    top:0vh;
+    font-size: 18px;
+}
+
+#NOAA-div{
+    height: 80vh;
+    width: 80vw;
+    position: absolute;
+    top: 10vh;
+    right: -78vw;
+    background-image: linear-gradient(to right, rgba(166, 166, 166, 0.7), rgba(255, 255, 255, 0.7));
+    fill-opacity: 10%;
+    border-radius: 32px;
+    transition: all 0.5s;
+    box-sizing: border-box;
+    padding: 16px;
+}
+#NOAA-div:hover{
+    transform: translateX(-10vh);
+}
+
+#location-div{
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+}
+#location-div:hover{
+    cursor: pointer;
+}
+
+#location-icon{
+    width: 2vw;
+}
+
+#location-text{
+    font-size: 18px;
+    color: var(--dark-gray);
+}
+
+#thl-div{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#temperature-div{
+    margin-top: 10%;
+    color: var(--dark-gray);
+    height: 10vh;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+#temperature-status{
+    margin: 0px;
+    font-size: 100px;
+}
+
+#temperature-unit{
+    margin: 0px 0px 0px 8px;
+    font-size: 22px;
+}
+
+#humidity-div{
+    color: var(--gray-green);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+#humidity-status{
+    margin: 0px;
+    font-size: 25px;
+}
+
+#humidity-unit{
+    margin: 0px 0px 0px 8px;
+    font-size: 18px;
+}
+
+#light-div{
+    color: var(--gray-green);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+#light-status{
+    margin: 0px;
+    font-size: 25px;
+}
+
+#light-unit{
+    margin: 0px 0px 0px 8px;
+    font-size: 18px;
+}
+
+#hl-formatter{
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: min-content;
+    width: 60%;
+}
+
+#hl-spacer{
+    margin: 0px;
+    color: var(--dark-gray);
+    margin: 0px 10% 0px 10%;
+}
+
+#recap-div{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10% 0px 0px 0px;
+}
+
+#recap-title{
+    font-size: 26px;
+    color: var(--darkest-gray);
+    font-family: Oswald;
+    margin: 0px 0px 16px 0px;
+}
+
+#recap-text{
+    margin: 0px;
+    font-size: 20px;
+    color: var(--dark-gray);
+}
+
+/*To set up images light levels*/
+
+
+#signature-text{
+    font-family: Allura;
+    font-size: 24px;
+    position: absolute;
+    right: 3vw;
+    bottom: 2vh;
+    transition: all 0.4s;
+}
+#signature-text:hover{
+    cursor: pointer;
+}
