@@ -14,7 +14,7 @@ const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sa
 let timeGod = getDate()
 let dayIndex = timeGod.getDay()
 
-body.style.backgroundImage = "url('img/cloudy.webp')";
+body.style.backgroundImage = "url('img/rain.webp')";
 
 document.getElementById("weather-status").innerText = "Raining"
 document.getElementById("date-text").innerText = timeGod.toLocaleDateString('it-IT', options);

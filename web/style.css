@@ -15,6 +15,7 @@
     --dark-gray: #415252;
     --gray-green: #5d6e71;
     --darkest-gray: #303f3d;
+    --yellow-formatted: rgb(220, 220, 6);
 }
 
 html{
@@ -110,19 +111,82 @@ main{
 
 #NOAA-div{
     height: 80vh;
-    width: 80vw;
+    width: 30vw;
     position: absolute;
     top: 10vh;
-    right: -78vw;
+    right: -28vw;
     background-image: linear-gradient(to right, rgba(166, 166, 166, 0.7), rgba(255, 255, 255, 0.7));
     fill-opacity: 10%;
     border-radius: 32px;
     transition: all 0.5s;
     box-sizing: border-box;
     padding: 16px;
+    padding-left: 5%;
 }
 #NOAA-div:hover{
     transform: translateX(-10vh);
+}
+
+#NOAA-dashboard-title{
+    font-size: 24px;
+    margin: 5vh 0px 0px 0px;
+    color: var(--darkest-gray);
+}
+
+#NOAA-dashboard-description{
+    font-family: 18px;
+    margin: 16px 0px 0px 0px;
+    width: 80%;
+}
+
+#NOAA-login-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2vh 0px 0px 2vw;
+    width: fit-content;
+}
+
+#NOAA-login-title{
+    color: var(--darkest-gray);
+    font-size: 24px;
+    font-family: Oswald;
+    margin: 32px 16px 16px 16px;
+}
+
+#NOAA-login-btn{
+    height: 5vh;
+    width: 60%;
+    border: none;
+    border-radius: 16px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+    padding: 16px;
+    background-color: var(--dark-gray);
+    color: white;
+    font-family: Oswald;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+#NOAA-login-btn:hover{
+    cursor: pointer;
+    background-color: var(--darkest-gray);
+    transform: scale(102%);
+}
+
+.inputs{
+    width: 110%;
+    height: 5vh;
+    border: none;
+    border-radius: 16px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+    padding: 16px;
+    color: var(--gray-green);
+    font-family: Questrial;
 }
 
 #location-div{
