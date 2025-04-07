@@ -23,6 +23,8 @@ Those "sounds" will eventually need to be converted into .WAV files and thed dec
 
 ## 1st Module: The Vee Dipole Antenna
 
+![Vee antenna](https://github.com/SebsIII/SRCS/blob/main/tools/Gallery/SRCS_render2.png)
+
 The first module is made of two parts, the **dipole antenna** and the **motorized support**:
 - The dipole antenna is the effective receiver of the SRCS, it's a horizontally polazied, omnidirectional, **Vee dipole antenna** tuned at 137.25 MHz (average downlink frequency of NOAA-15,18,19 *). <br>
   The antenna output will eventually be connected to a 50 ohm [RG58 coaxial cable](https://www.farnell.com/datasheets/2095749.pdf) that will transfer the output signal from the antenna to the [RTL-SDR](https://en.wikipedia.org/wiki/Software-defined_radio) or the general receiver that will, later on, analyze the signal and convert it in an image. <br>
