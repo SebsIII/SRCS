@@ -37,6 +37,8 @@ The first module is made of two parts, the **dipole antenna** and the **motorize
 
 ## 2nd Module: Weather data Module
 
+![anemometer](https://github.com/SebsIII/SRCS/blob/main/tools/Gallery/anemometer-render2.png)
+
 The second module is the weather monitor system, which is the part which goal is to gather weather data that will later on, be analyzed by the MCU.  <br>
 It's composed of various sensors, including: [DHT11]() for **temperature and humidity**, a light sensor, to gather **ambient light level**, an anemometer for **wind speed** and a rain sensor. <br>
 The combination of those data, will be used to **monitor and predict how currend and future weather is/will be**. <br>
