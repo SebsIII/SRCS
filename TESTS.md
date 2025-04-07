@@ -3,7 +3,7 @@
 - [X] TXS0108E
 - [x] 28BYJ-48
 - [x] ULN2003
-- [ ] ESP01S
+- [ ] rain sensor
 - [X] DHT11 - OK
 - [X] Photoresistor
 - [X] W5100 
