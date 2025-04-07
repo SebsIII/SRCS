@@ -1,6 +1,7 @@
 # SRCS - Satellite Receiver Control Station
 
-The SRCS (**S**atellite **R**eceiver **C**ontrol **S**tation) is a system which goal is tos maximize the reception of satellite signals and to gather weather data.
+The Satellite Receiver Control Station (SRCS) is a critical operational facility dedicated to maximizing the quality and reliability of satellite signal reception. This is achieved through the continuous acquisition, processing, and analysis of diverse sensor data streams. The SRCS leverages this information to dynamically optimize antenna pointing, receiver parameters, and other system configurations, ensuring optimal signal capture and data integrity.
+
 
 ## Description
 The control station is made primarely of 2 modules:
