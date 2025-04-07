@@ -37,4 +37,21 @@ NOAA_div.addEventListener("click",() => {
     setTimeout(()=>{main.style.display = "none"}, 700)
 })
 
-//fetch api from srcs
+const NOAA_btn = document.getElementById("NOAA-login-btn");
+const NOAA_user = document.getElementById("user-login");
+const NOAA_psw = document.getElementById("psw-login");
+
+NOAA_btn.addEventListener("click", () => {
+    var username = NOAA_user.value
+    var pssw = NOAA_psw.value
+    if(pssw != "" && username != ""){
+        if(username == "sebs" && pssw == "12345678"){       //Make psw and user check better   
+            console.log("LOGIN OK")
+            location.href="NOAA.html"
+        } else {
+            console.log("not ok")
+        }
+    }
+    NOAA_psw.value = ""
+    NOAA_user.value = ""
+})
