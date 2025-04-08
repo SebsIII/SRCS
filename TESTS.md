@@ -92,15 +92,6 @@ log = SD.open("log.txt", FILE_WRITE);
 
 ## LIGHTWEIGHT WEB PAGE
 - **[Design](https://dribbble.com/shots/20288381-Weather-Forecasting-Web-App-UI)**
-- WeBP images
-- no comments or useless data in final code
-- web cache for images?
-- local fonts?
-- minimal interface
-- less images
-- css,js in the same file?
-- file in SD
-- background and static texts as background image (one for mobile and one for desktop)
 ## Web data
 - font - merryweather
 - [canva background](https://www.canva.com/design/DAGjF7-2_sY/XArurzRtQZ8dEjKSA_NvSw/edit)
