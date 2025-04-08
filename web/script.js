@@ -1,3 +1,5 @@
+import { checkUserPsw } from "./back-end-manager.js";
+
 function getDate(){
     let currentDate = new Date();
     currentDate.getDay
@@ -42,15 +44,18 @@ const NOAA_user = document.getElementById("user-login");
 const NOAA_psw = document.getElementById("psw-login");
 
 NOAA_btn.addEventListener("click", () => {
+    body.style.cursor = "wait"
     var username = NOAA_user.value
     var pssw = NOAA_psw.value
     if(pssw != "" && username != ""){
-        if(username == "sebs" && pssw == "12345678"){       //Make psw and user check better   
-            console.log("LOGIN OK")
-            location.href="NOAA.html"
-        } else {
-            console.log("not ok")
-        }
+        checkUserPsw(pssw, username).then(isValid => {
+            if (isValid) {
+                sessionStorage.setItem("LoggedIn", true)
+                location.href="NOAA.html"
+            } else {
+                alert("login inputs are not right")
+            }
+        });
     }
     NOAA_psw.value = ""
     NOAA_user.value = ""
