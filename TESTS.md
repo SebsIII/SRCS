@@ -16,115 +16,66 @@
 - [ ] What if? stm32 hosted web server only handles HTTP GET requests and a different website is hosted on a different more performant domain, that myght mean that the web page could be "heavier"? [Expsress, node.js](https://expressjs.com/)
 - [ ] [NodeJS on  stm32](https://www.instructables.com/NodeJs-and-Arduino/)
 
-## HTTP GET request handler
+## Arduino + firebase
 ``` cpp
 
 #include <SPI.h>
 #include <Ethernet.h>
-#include <EthernetClient.h>
+#include <FirebaseArduino.h>
 
-// Network configuration (adjust as needed for your network)
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; // Replace with your MAC address
-IPAddress ip(192, 168, 1, 177); // Replace with your desired IP address
-IPAddress gateway(192, 168, 1, 1); // Replace with your gateway IP
-IPAddress subnet(255, 255, 255, 0); // Replace with your subnet mask
-IPAddress dnsServer(192, 168, 1, 1); // Optional DNS server
+// Firebase project credentials
+#define FIREBASE_HOST "your-project-id.firebaseio.com"  // Your Firebase URL
+#define FIREBASE_AUTH "your-database-secret"  // Firebase database secret
 
-EthernetServer server(80); // Server port (HTTP default)
+// Ethernet Shield credentials
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  // Replace with your MAC address
+IPAddress ip(192, 168, 1, 177);  // Optional: Set static IP or use DHCP
+
+EthernetClient client;
 
 void setup() {
+  // Start Serial communication for debugging
   Serial.begin(9600);
 
-  // Initialize Ethernet shield
-  Ethernet.begin(mac, ip, dnsServer, gateway, subnet);
-  // Note: You can also use DHCP: Ethernet.begin(mac);
-
-  // Check for Ethernet hardware present
-  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
-    Serial.println("Ethernet shield was not found.  Sorry, can't proceed without hardware.");
-    while (true) {
-      delay(1); // Do nothing, no point running without Ethernet hardware
-    }
+  // Start Ethernet and try to connect
+  if (Ethernet.begin(mac) == 0) {
+    Serial.println("Failed to configure Ethernet using DHCP");
+    // Static IP setup if DHCP fails
+    Ethernet.begin(mac, ip);
   }
-  if (Ethernet.linkStatus() == LinkOFF) {
-    Serial.println("Ethernet cable is not connected.");
+  delay(1000);
+
+  Serial.println("Connecting to Firebase...");
+
+  // Connect to Firebase
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+
+  // Test if the Firebase connection is successful
+  if (Firebase.ready()) {
+    Serial.println("Connected to Firebase!");
+  } else {
+    Serial.println("Failed to connect to Firebase.");
   }
-
-  // Start the server
-  server.begin();
-
-  Serial.print("Server started on IP: ");
-  Serial.println(Ethernet.localIP());
 }
 
 void loop() {
-  // Listen for incoming clients
-  EthernetClient client = server.available();
+  // Send data to Firebase
+  int sensorValue = analogRead(A0);  // Example: Read analog value from pin A0
 
-  if (client) {
-    Serial.println("New client connected!");
+  // Set a value in the Firebase Realtime Database
+  Firebase.setInt("sensor/value", sensorValue);
 
-    // An http request ends with a blank line
-    boolean currentLineIsBlank = true;
-    String request = "";
-
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        request += c;
-        Serial.print(c);
-
-        // If we get a blank line, the http request has ended
-        if (c == '\n' && currentLineIsBlank) {
-          // Process the HTTP GET request
-          if (request.startsWith("GET /random")) {
-            sendRandomNumber(client);
-          } else {
-            // Handle other requests or send a default response
-            sendDefaultResponse(client);
-          }
-          break;
-        }
-        if (c == '\n') {
-          currentLineIsBlank = true;
-        } else if (c != '\r') {
-          currentLineIsBlank = false;
-        }
-      }
-    }
-    // Give the web browser time to receive the data
-    delay(1);
-
-    // Close the connection
-    client.stop();
-    Serial.println("Client disconnected!");
+  // Check if the data was successfully written
+  if (Firebase.failed()) {
+    Serial.print("Firebase set failed: ");
+    Serial.println(Firebase.error());
+  } else {
+    Serial.println("Data sent to Firebase.");
   }
+
+  // Wait for 2 seconds before sending the next data
+  delay(2000);
 }
-
-void sendRandomNumber(EthernetClient client) {
-  // Generate a random number (adjust range as needed)
-  int randomNumber = random(0, 1000);
-
-  // Send the HTTP response header
-  client.println("HTTP/1.1 200 OK");
-  client.println("Content-Type: text/plain");
-  client.println("Connection: close");  // Close the connection after sending the response
-  client.println();                      // Empty line to end the header
-
-  // Send the random number as the response body
-  client.print("Random Number: ");
-  client.println(randomNumber);
-}
-
-void sendDefaultResponse(EthernetClient client) {
-  // Send a default response for other requests
-  client.println("HTTP/1.1 404 Not Found");
-  client.println("Content-Type: text/plain");
-  client.println("Connection: close");
-  client.println();
-  client.println("Page Not Found");
-}
-
 ```
 ## string to log txt file
 ``` cpp
