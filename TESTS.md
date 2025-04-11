@@ -19,10 +19,10 @@
 
 ## Web datasheet
 - **AA** - Antenna Azimuth
-- **AD** - (Last) Antenna Direction
-- **MApDR** - Maximum Angle per Direction (of) Rotation
+- **AD** - [Last] Antenna Direction
+- **MApDR** - Maximum Angle per Direction (of) Rotation [left]
 - **Rain** - Rain Level
-- **POST** - (Last) Power On Self Test (Outcome)
+- **POST** - [Last] Power On Self Test [Outcome]
 
 ## Arduino + firebase
 ``` cpp
