@@ -17,6 +17,13 @@
 - [ ] [NodeJS on  stm32](https://www.instructables.com/NodeJs-and-Arduino/)
 - [ ] [advanced web server things](https://startingelectronics.org/tutorials/arduino/ethernet-shield-web-server-tutorial/web-server-read-switch-using-AJAX/)
 
+## Web datasheet
+- AA - Antenna Azimuth
+- AD - (Last) Antenna Direction
+- MApDR - Maximum Angle per Direction (of) Rotation
+- Rain - Rain Level
+- POST - (Last) Power On Self Test (Outcome)
+
 ## Arduino + firebase
 ``` cpp
 
