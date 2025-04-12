@@ -15,6 +15,31 @@
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
 - [ ] [AJAX](https://startingelectronics.org/tutorials/arduino/ethernet-shield-web-server-tutorial/web-server-read-switch-using-AJAX/)
 
+## Snippets
+> [!WARNING]
+> Those snippets need to be tested
+
+### DHT11
+
+``` cpp
+float getTemperature(){
+  float T = dht.readTemperature();
+  if (isnan(T)) {   
+    return 0;
+  }
+  return  T;
+}
+```
+``` cpp
+float getHumidity(){
+  float H = dht.readHumidity();
+  if (isnan(H)) {   
+    return 0;
+  }
+  return  H;
+}
+```
+
 ## Web datasheet
 - **AA** - Antenna Azimuth
 - **AD** - [Last] Antenna Direction
