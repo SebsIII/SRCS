@@ -13,9 +13,7 @@
 - [X] [STM32 TO ARDUINO IDE](https://www.youtube.com/watch?v=yssEiMLGH90)
 - [X] [DHT11](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/), adapted
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
-- [ ] What if? stm32 hosted web server only handles HTTP GET requests and a different website is hosted on a different more performant domain, that myght mean that the web page could be "heavier"? [Expsress, node.js](https://expressjs.com/)
-- [ ] [NodeJS on  stm32](https://www.instructables.com/NodeJs-and-Arduino/)
-- [ ] [advanced web server things](https://startingelectronics.org/tutorials/arduino/ethernet-shield-web-server-tutorial/web-server-read-switch-using-AJAX/)
+- [ ] [AJAX](https://startingelectronics.org/tutorials/arduino/ethernet-shield-web-server-tutorial/web-server-read-switch-using-AJAX/)
 
 ## Web datasheet
 - **AA** - Antenna Azimuth
