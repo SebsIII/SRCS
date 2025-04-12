@@ -19,6 +19,8 @@
 > [!WARNING]
 > Those snippets need to be tested
 
+Pin Format: NAME-PIN
+
 ### DHT11
 
 ``` cpp
@@ -37,6 +39,14 @@ float getHumidity(){
     return 0;
   }
   return  H;
+}
+```
+
+## Rain Sensor
+``` cpp
+float getRain(){  //To format raw input 
+  int RL = analogRead(RAIN-PIN)
+  return  RL;
 }
 ```
 
