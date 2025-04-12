@@ -44,9 +44,25 @@ float getHumidity(){
 
 ## Rain Sensor
 ``` cpp
-float getRain(){  //To format raw input 
+int getRain(){  //To format raw input 
   int RL = analogRead(RAIN-PIN)
   return  RL;
+}
+```
+
+## Light Sensor
+``` cpp
+int getLight(){  //To format raw input 
+  int LL = analogRead(PHOTO-PIN)
+  return  LL;
+}
+```
+
+## Anemometer
+``` cpp
+float getWind(){  //To format raw input (?)
+  int WS = analogRead(ANEMO-PIN)
+  return  WS;
 }
 ```
 
