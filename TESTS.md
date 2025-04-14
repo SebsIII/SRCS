@@ -14,6 +14,7 @@
 - [X] [DHT11](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/), adapted
 - [X] [STM32 to Ethernet shield](https://balau82.wordpress.com/2015/08/02/arduino-ethernet-shield-on-stm32-nucleo/)
 - [ ] [AJAX](https://startingelectronics.org/tutorials/arduino/ethernet-shield-web-server-tutorial/web-server-read-switch-using-AJAX/)
+- [ ] [sd TO COPY CODE](https://www.youtube.com/watch?v=Nn6HuLtUSEU)
 
 ## Snippets
 > [!WARNING]
