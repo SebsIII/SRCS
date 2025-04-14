@@ -43,3 +43,44 @@ The second module is the weather monitor system, which is the part which goal is
 It's composed of various sensors, including: [DHT11]() for **temperature and humidity**, a light sensor, to gather **ambient light level**, an anemometer for **wind speed** and a rain sensor. <br>
 The combination of those data, will be used to **monitor and predict how currend and future weather is/will be**. <br>
 Those info are necessary to better understand how the weather will be during the NOAA receiving sessions, since those conditions can impact on the reciving quality and/or damage some components if used under certain situations, like rain or extreme wind storms.
+
+## The Power Managment System PMS
+
+The SRCS is powered by a **9v 5w solar panel** which charges up a **12v 7AH Lead acid battery** with a **[XY-L10A](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.qso.com.ar/datasheets/Modulo%2520de%2520control%2520de%2520carga%2520XY-L10A/XY-L10A.docx&ved=2ahUKEwi1_PSDt9iMAxWxgv0HHRd6EU8QFnoECCYQAQ&usg=AOvVaw00YEWtkEqTxmvZ8xFjY2dq) BMS** which handles and manages the battery charging-sequencies.
+Before the BMS, there's a **buck step-up circuit** which up-shifts the voltage from *9v => ~13v*, needed to charge the battery.
+The battery outputs are then inputted in two **buck step-down circuits**, one at *~7,5v for the MCU power supply* and the other at *5v for the sensors power supply*.
+
+The complete system is schematized below:
+
+``` 
+Solar panel
+    |        
+    v        
+   13v---> XY-L10A
+    |        v
+    v        |
+ Battery <---/
+  |   |
+  v   v
+ 7.5v 5v--> Sensors IN 
+  |
+  v   
+STM32F401RE VIN
+```
+
+## The communication protocol
+
+> [!CAUTION]
+> Update the photo from ETH-SUPPORT to DASHBOARD-OVERVIEW 
+
+![dashboard-overview](https://github.com/SebsIII/SRCS/blob/main/tools/Gallery/eth-render1.png)
+
+The SRCS, other than a control station is also a **web server** hosting a **local website**, on which are displayed the weather data, the SRCS status, the nearby satellite passes data and much more.
+ 
+The website is written in **HTML**,**CSS** and **JS** and the communication protocol between the website and the SRCS itself is based on [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)).
+
+The **website local IP address** is set to:
+```
+http://192.168.1.100
+```
+
