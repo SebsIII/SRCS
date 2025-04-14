@@ -24,7 +24,6 @@ void setup()
 {
   Serial.begin(9600);
   dht.begin();
-  //pinMode(53, OUTPUT);
   //-----------------------------------------------------
   Serial.println(F("Initializing SD card..."));
   if(!SD.begin(4))
