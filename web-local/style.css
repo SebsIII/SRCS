@@ -1,0 +1,105 @@
+@font-face { /*Questrial*/
+    font-family: "Questrial";
+    src: url(/assets/Questrial-Regular.ttf) format("truetype");
+}
+@font-face { /*Oswald*/
+    font-family: "Oswald";
+    src: url(/assets/Oswald-Regular.ttf) format("truetype");
+}
+@font-face { /*Allura*/
+    font-family: "Allura";
+    src: url(/assets/Allura-Regular.ttf) format("truetype");
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+    color: white;
+    background-color: #0B0B0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Questrial;
+}
+
+main{
+    width: 90vw;
+    height: 85vh;
+    background: linear-gradient(to right, rgba(166, 166, 166,0.7), rgba(255, 255, 255,0.7));
+    border-radius: 32px;
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+header{
+    margin: 0px;
+    display: flex;
+    width: 100vw;
+    height: 7.5vh;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: baseline;
+    padding-left: 20vw;
+}
+
+#SRCS-title{
+    font-size: 24px;
+    font-family: Oswald;
+    transition: all 0.3s;
+}
+#SRCS-title:hover{
+    cursor: pointer;
+    transform: scale(110%);
+}
+
+#SRCS-subtitle{
+    font-size: 22px;
+    font-family: Oswald;
+    color: violet;
+    margin-left: 4px;
+}
+
+footer{
+    margin: 0px;
+    display: flex;
+    width: 100vw;
+    height: 7.5vh;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    padding-right: 15vw;
+}
+
+#signature{
+    font-family: Allura;
+    font-size: 26px;
+    transition: all 0.3s;
+}
+#signature:hover{
+    cursor: pointer;
+    transform: scale(110%);
+}
+
+#main-title{
+    margin: 8px 0px 0px 5%;
+    font-size: 24px;
+}
+
+#weather-div{
+    width: 20vw;
+    height: 45vh;
+    background-color: rgb(207, 104, 207);
+    border-radius: 32px;
+    position: absolute;
+    right: 6.5vw;
+    top: 10.5vh;
+    box-sizing: border-box;
+    padding: 16px;
+}
