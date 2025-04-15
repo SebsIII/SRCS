@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Oswald:wght@200..700&family=Questrial&display=swap" rel="stylesheet">
+
     <title>SRCS Dashboard</title>
 </head>
 <body>
@@ -13,24 +22,46 @@
     </header>
     <main>
         <p id="main-title">Reception tab</p>
-        <div id="general-data-div">
-
+        <div id="GN-formatter">
+            <div id="general-data-div" class="info-div">
+                <p id="general-title" onclick="getGeneral()">General</p>
+                <p class="data">AA = <a id="AA-var">N/A</a></p>
+                <p class="data">AD = <a id="AD-var">N/A</a></p>
+                <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
+                <p class="data">Rain = <a id="R-var">N/A</a></p>
+                <p class="data">MRC = <a id="MRC-var">N/A</a></p>
+            </div>
+            <div id="N2YO-data-div" class="info-div">
+                <p id="N2YO-title" onclick="updateN2YO()">N2YO</p>
+                <p class="data">NORAD = <a id="NORAD-var">N/A</a></p>
+                <p class="data">Passes = <a id="passes-var">N/A</a></p>
+                <p class="data">startAz = <a id="startAz-var">N/A</a></p>
+                <p class="data">maxAz = <a id="maxAz-var">N/A</a></p>
+                <p class="data">endAz = <a id="endAz-var">N/A</a></p>
+                <p class="data">sTime = <a id="sTime-var">N/A</a></p>
+                <p class="data">eTime = <a id="eTime-var">N/A</a></p>
+            </div>
+            
+            <div id="antenne-animation-div">
+                <div id="antenna-icon"></div>
+            </div>
         </div>
-        <div id="N2YO-data-div">
-
+        <div id="SRCS-data-div" class="info-div">
+            <p id="SRCS-div-title" onclick="getSRCS()">SRCS</p>
+            <p class="data">POST = <a id="POST-var">N/A</a></p>
         </div>
         <div id="weather-div">
             <p id="weather-title">Current <a class="black">Weather</a></p>
-            <p id="temperature-wrapper" class="black"><a id="temperature-var">-</a>C°</p>
-            <p id="humidity-wrapper"><a id="humidity-var">-</a>%</p>
-            <p>300lx</p>
+            <p id="temperature-wrapper" class="black"><a id="temperature-var">N/A</a>C°</p>
+            <p id="humidity-wrapper"><a id="humidity-var">N/A</a>%</p>
+            <p><a id="light-var">N/A</a>lx</p>
             <p class="black">10km/h</p>
-            <p class="black">low rain</p>
+            <p class="black" id="rain-var">N/A</p>
             <div id="status-div"></div>
         </div>
         <div id="setup-div">
             <button id="align-antenna-btn">Align antenna to startAz</button>
-            <p><a id="time-left">-</a> time left.</p>
+            <p><a id="time-left">N/A</a> time left.</p>
         </div>
     </main>   
     <footer>

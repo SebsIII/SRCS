@@ -1,15 +1,3 @@
-@font-face { /*Questrial*/
-    font-family: "Questrial";
-    src: url(/assets/Questrial-Regular.ttf) format("truetype");
-}
-@font-face { /*Oswald*/
-    font-family: "Oswald";
-    src: url(/assets/Oswald-Regular.ttf) format("truetype");
-}
-@font-face { /*Allura*/
-    font-family: "Allura";
-    src: url(/assets/Allura-Regular.ttf) format("truetype");
-}
 
 body{
     width: 100vw;
@@ -60,7 +48,7 @@ header{
 #SRCS-subtitle{
     font-size: 22px;
     font-family: Oswald;
-    color: violet;
+    color: #9D4EDD;
     margin-left: 4px;
 }
 
@@ -85,7 +73,7 @@ footer{
 #signature:hover{
     cursor: pointer;
     transform: scale(110%);
-    color: violet;
+    color: #9D4EDD;
 }
 
 #main-title{
@@ -96,7 +84,7 @@ footer{
 #weather-div{
     width: 20vw;
     height: 45vh;
-    background-color: rgb(207, 104, 207);
+    background-color: #9D4EDD;
     border-radius: 16px;
     position: absolute;
     right: 6.5vw;
@@ -112,7 +100,7 @@ footer{
     width: 15vw;
     height: 8vh;
     color: white;
-    background-color: rgb(207, 113, 207);
+    background-color: #9D4EDD;
     border: none;
     border-radius: 16px;
     font-family: Questrial;
@@ -170,4 +158,67 @@ footer{
 
 #humidity-var{
     font-size: 32px;
+}
+
+#GN-formatter{
+    display: flex;
+    margin: 32px;
+}
+
+.info-div{
+    min-width: 15vw;
+    height: fit-content;
+    margin: 0px;
+    font-size: 20px;
+}
+
+#general-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#general-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+#N2YO-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#N2YO-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+.data{
+    margin: 4px;
+}
+
+#SRCS-data-div{
+    margin: 32px;
+}
+
+
+#SRCS-div-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#SRCS-div-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
 }
