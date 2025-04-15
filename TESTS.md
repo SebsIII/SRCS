@@ -20,7 +20,7 @@
 > [!WARNING]
 > Those snippets need to be tested
 
-Pin Format: NAME-PIN
+Pin Format: NAMEPIN
 
 ### DHT11
 
@@ -46,7 +46,7 @@ float getHumidity(){
 ## Rain Sensor
 ``` cpp
 int getRain(){  //To format raw input 
-  int RL = analogRead(RAIN-PIN)
+  int RL = analogRead(RAINPIN)
   return  RL;
 }
 ```
@@ -54,7 +54,7 @@ int getRain(){  //To format raw input
 ## Light Sensor
 ``` cpp
 int getLight(){  //To format raw input 
-  int LL = analogRead(PHOTO-PIN)
+  int LL = analogRead(PHOTOPIN)
   return  LL;
 }
 ```
@@ -62,7 +62,7 @@ int getLight(){  //To format raw input
 ## Anemometer
 ``` cpp
 float getWind(){  //To format raw input (?)
-  int WS = analogRead(ANEMO-PIN)
+  int WS = analogRead(ANEMOPIN)
   return  WS;
 }
 ```
