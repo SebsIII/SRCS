@@ -73,6 +73,7 @@ float getWind(){  //To format raw input (?)
 - **MApDR** - Maximum Angle per Direction (of) Rotation [left]
 - **Rain** - Rain Level
 - **POST** - [Last] Power On Self Test [Outcome]
+- **MRC** - Meteorological Reliability Coefficient
 
 ## Web data
 - font - [Questial, allura, Oswald]
