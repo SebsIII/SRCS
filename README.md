@@ -70,9 +70,6 @@ STM32F401RE VIN
 
 ## The communication protocol
 
-> [!CAUTION]
-> Update the photo from ETH-SUPPORT to DASHBOARD-OVERVIEW 
-
 ![dashboard-overview](https://github.com/SebsIII/SRCS/blob/main/tools/Gallery/eth-render1.png)
 
 The SRCS, other than a control station is also a **web server** hosting a **local website**, on which are displayed the weather data, the SRCS status, the nearby satellite passes data and much more.
