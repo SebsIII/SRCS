@@ -77,6 +77,4 @@ float getWind(){  //To format raw input (?)
 
 ## Web data
 - font - [Questial, allura, Oswald]
-- [canva background](https://www.canva.com/design/DAGjF7-2_sY/XArurzRtQZ8dEjKSA_NvSw/edit)
-- [kaze.ai](https://kaze.ai/watermark-removal/processing?fromPage=watermark-removal)
 
