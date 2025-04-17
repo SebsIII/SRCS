@@ -67,6 +67,13 @@ float getWind(){  //To format raw input (?)
 }
 ```
 
+## Rain A => value
+- 1020~1023 = clear
+- 1019~800 = some droplets
+- 799~600 = rain
+- 599~50 = heavy rain
+- >50 = metal on the sensor
+
 ## Web datasheet
 - **AA** - Antenna Azimuth
 - **AD** - [Last] Antenna Direction
