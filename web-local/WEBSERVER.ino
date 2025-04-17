@@ -90,7 +90,7 @@ void loop()
             client.println();
             client.println(getLight());
           }
-          else if(HTTP_req.indexOf("readL")>-1)
+          else if(HTTP_req.indexOf("readR")>-1)
           {
             client.println("HTTP/1.1 200 OK");
             client.println("Content-Type: text/plain");
