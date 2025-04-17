@@ -200,6 +200,20 @@ footer{
     color: #e2c105;
 }
 
+#weather-data-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#weather-data-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
 .data{
     margin: 4px;
 }

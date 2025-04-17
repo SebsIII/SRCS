@@ -3,184 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" href="style.css">-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Oswald:wght@200..700&family=Questrial&display=swap" rel="stylesheet">
+
     <title>SRCS Dashboard</title>
 </head>
 <style>
-    
-    @font-face { /*Questrial*/
-        font-family: "Questrial";
-        src: url(/assets/Questrial-Regular.ttf) format("truetype");
-    }
-    @font-face { /*Oswald*/
-        font-family: "Oswald";
-        src: url(/assets/Oswald-Regular.ttf) format("truetype");
-    }
-    @font-face { /*Allura*/
-        font-family: "Allura";
-        src: url(/assets/Allura-Regular.ttf) format("truetype");
-    }
 
-    body{
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        margin: 0px;
-        color: white;
-        background-color: #0B0B0B;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        font-family: Questrial;
-    }
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+    color: white;
+    background-color: #0B0B0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Questrial;
+}
 
-    main{
-        width: 90vw;
-        height: 85vh;
-        background: linear-gradient(to right, rgba(166, 166, 166,0.7), rgba(255, 255, 255,0.7));
-        border-radius: 16px;
-        margin: 0px;
-        box-sizing: border-box;
-        padding: 16px;
-    }
+main{
+    width: 90vw;
+    height: 85vh;
+    background: linear-gradient(to right, rgba(166, 166, 166,0.7), rgba(255, 255, 255,0.7));
+    border-radius: 16px;
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 16px;
+}
 
-    header{
-        margin: 0px;
-        display: flex;
-        width: 100vw;
-        height: 7.5vh;
-        position: absolute;
-        top: 0px;
-        display: flex;
-        align-items: baseline;
-        padding-left: 20vw;
-    }
+header{
+    margin: 0px;
+    display: flex;
+    width: 100vw;
+    height: 7.5vh;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: baseline;
+    padding-left: 20vw;
+}
 
-    #SRCS-title{
-        font-size: 24px;
-        font-family: Oswald;
-        transition: all 0.3s;
-    }
-    #SRCS-title:hover{
-        cursor: pointer;
-        transform: scale(110%);
-    }
+#SRCS-title{
+    font-size: 24px;
+    font-family: Oswald;
+    transition: all 0.3s;
+}
+#SRCS-title:hover{
+    cursor: pointer;
+    transform: scale(110%);
+}
 
-    #SRCS-subtitle{
-        font-size: 22px;
-        font-family: Oswald;
-        color: violet;
-        margin-left: 4px;
-    }
+#SRCS-subtitle{
+    font-size: 22px;
+    font-family: Oswald;
+    color: #9D4EDD;
+    margin-left: 4px;
+}
 
-    footer{
-        margin: 0px;
-        display: flex;
-        width: 100vw;
-        height: 7.5vh;
-        position: absolute;
-        bottom: 0px;
-        display: flex;
-        align-items:center;
-        justify-content: right;
-        padding-right: 15vw;
-    }
+footer{
+    margin: 0px;
+    display: flex;
+    width: 100vw;
+    height: 7.5vh;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    padding-right: 15vw;
+}
 
-    #signature{
-        font-family: Allura;
-        font-size: 26px;
-        transition: all 0.3s;
-    }
-    #signature:hover{
-        cursor: pointer;
-        transform: scale(110%);
-        color: violet;
-    }
+#signature{
+    font-family: Allura;
+    font-size: 26px;
+    transition: all 0.3s;
+}
+#signature:hover{
+    cursor: pointer;
+    transform: scale(110%);
+    color: #9D4EDD;
+}
 
-    #main-title{
-        margin: 8px 0px 0px 5%;
-        font-size: 24px;
-    }
+#main-title{
+    margin: 8px 0px 0px 5%;
+    font-size: 24px;
+}
 
-    #weather-div{
-        width: 20vw;
-        height: 45vh;
-        background-color: rgb(207, 104, 207);
-        border-radius: 16px;
-        position: absolute;
-        right: 6.5vw;
-        top: 10.5vh;
-        box-sizing: border-box;
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+#weather-div{
+    width: 20vw;
+    height: 45vh;
+    background-color: #9D4EDD;
+    border-radius: 16px;
+    position: absolute;
+    right: 6.5vw;
+    top: 10.5vh;
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    #align-antenna-btn{
-        width: 15vw;
-        height: 8vh;
-        color: white;
-        background-color: rgb(207, 113, 207);
-        border: none;
-        border-radius: 16px;
-        font-family: Questrial;
-        font-size: 20px;
-        transition: all 0.3s;
-        margin: 0px 16px 0px 0px;
-    }
-    #align-antenna-btn:hover{
-        cursor: pointer;
-        transform: scale(105%);
-        filter: brightness(95%);
-    }
+#align-antenna-btn{
+    width: 15vw;
+    height: 8vh;
+    color: white;
+    background-color: #9D4EDD;
+    border: none;
+    border-radius: 16px;
+    font-family: Questrial;
+    font-size: 20px;
+    transition: all 0.3s;
+    margin: 0px 16px 0px 0px;
+}
+#align-antenna-btn:hover{
+    cursor: pointer;
+    transform: scale(105%);
+    filter: brightness(95%);
+}
 
-    #setup-div{
-        width: fit-content;
-        height: 8vh;
-        margin: 0px;
-        position: absolute;
-        bottom: 10vh;
-        left: 6.5vw;    
-        display: flex;
-        align-items: center;
-    }
+#setup-div{
+    width: fit-content;
+    height: 8vh;
+    margin: 0px;
+    position: absolute;
+    bottom: 10vh;
+    left: 6.5vw;    
+    display: flex;
+    align-items: center;
+}
 
-    #status-div{
-        background-color: white;
-        width: 80%;
-        height: 2vh;
-        border-radius: 16px;
-        position: absolute;
-        right: 2vw;
-        top: 90%;
-    }
+#status-div{
+    background-color: white;
+    width: 80%;
+    height: 2vh;
+    border-radius: 16px;
+    position: absolute;
+    right: 2vw;
+    top: 90%;
+}
 
-    .black{
-        color: #0b0b0b;
-    }
+.black{
+    color: #0b0b0b;
+}
 
-    #weather-title{
-        font-size: 22px;
-        margin: 4px;
-    }
+#weather-title{
+    font-size: 22px;
+    margin: 4px;
+}
 
-    #temperature-wrapper{
-        margin: 16px 0px;
-    }
+#temperature-wrapper{
+    margin: 16px 0px;
+}
 
-    #temperature-var{
-        font-size: 72px;
-    }
+#temperature-var{
+    font-size: 72px;
+}
 
-    #humidity-wrapper{
-        margin: 0px;
-    }
+#humidity-wrapper{
+    margin: 0px;
+}
 
-    #humidity-var{
-        font-size: 32px;
-    }
+#humidity-var{
+    font-size: 32px;
+}
+
+#GN-formatter{
+    display: flex;
+    margin: 32px;
+}
+
+.info-div{
+    min-width: 15vw;
+    height: fit-content;
+    margin: 0px;
+    font-size: 20px;
+}
+
+#general-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#general-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+#N2YO-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#N2YO-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+#weather-data-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#weather-data-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+.data{
+    margin: 4px;
+}
+
+#SRCS-data-div{
+    margin: 32px;
+}
+
+
+#SRCS-div-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#SRCS-div-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
 </style>
 
 
@@ -191,24 +263,52 @@
     </header>
     <main>
         <p id="main-title">Reception tab</p>
-        <div id="general-data-div">
-
+        <div id="GN-formatter">
+            <div id="general-data-div" class="info-div">
+                <p id="general-title" onclick="getGeneral()">General</p>
+                <p class="data">AA = <a id="AA-var">N/A</a></p>
+                <p class="data">AD = <a id="AD-var">N/A</a></p>
+                <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
+                <p class="data">Rain = <a id="R-var">N/A</a></p>
+                <p class="data">MRC = <a id="MRC-var">N/A</a></p>
+            </div>
+            <div id="N2YO-data-div" class="info-div">
+                <p id="N2YO-title" onclick="updateN2YO()">N2YO</p>
+                <p class="data">NORAD = <a id="NORAD-var">N/A</a></p>
+                <p class="data">Passes = <a id="passes-var">N/A</a></p>
+                <p class="data">startAz = <a id="startAz-var">N/A</a></p>
+                <p class="data">maxAz = <a id="maxAz-var">N/A</a></p>
+                <p class="data">endAz = <a id="endAz-var">N/A</a></p>
+                <p class="data">sTime = <a id="sTime-var">N/A</a></p>
+                <p class="data">eTime = <a id="eTime-var">N/A</a></p>
+            </div>
+            <div id="weather-data-div" class="info-div">
+                <p id="weather-data-title" onclick="updateWeather()">Weather RAW</p>
+                <p class="data">Light = <a id="light-RAW-var">N/A</a></p>
+                <p class="data">Rain = <a id="rain-RAW-var">N/A</a></p>
+                <p class="data">Wind = <a id="wind-RAW-var">N/A</a></p>
+            </div>
+            
+            <div id="antenne-animation-div">
+                <div id="antenna-icon"></div>
+            </div>
         </div>
-        <div id="N2YO-data-div">
-
+        <div id="SRCS-data-div" class="info-div">
+            <p id="SRCS-div-title" onclick="getSRCS()">SRCS</p>
+            <p class="data">POST = <a id="POST-var">N/A</a></p>
         </div>
         <div id="weather-div">
             <p id="weather-title">Current <a class="black">Weather</a></p>
-            <p id="temperature-wrapper" class="black"><a id="temperature-var">-</a>C°</p>
-            <p id="humidity-wrapper"><a id="humidity-var">-</a>%</p>
-            <p>300lx</p>
-            <p class="black">10km/h</p>
-            <p class="black">low rain</p>
+            <p id="temperature-wrapper" class="black"><a id="temperature-var">N/A</a>C°</p>
+            <p id="humidity-wrapper"><a id="humidity-var">N/A</a>%</p>
+            <p><a id="light-var">N/A</a>lx</p>
+            <p class="black"><a id="wind-var">N/A</a>km/h</p>
+            <p class="black" id="rain-var">N/A</p>
             <div id="status-div"></div>
         </div>
         <div id="setup-div">
             <button id="align-antenna-btn">Align antenna to startAz</button>
-            <p><a id="time-left">-</a> time left.</p>
+            <p><a id="time-left">N/A</a> time left.</p>
         </div>
     </main>   
     <footer>
@@ -216,44 +316,146 @@
     </footer>
     <script>
 
-        document.getElementById("time-left").innerText = "10:03"
+document.getElementById("time-left").innerText = "10:03"
 
-        //document.getElementById("temperature-var").innerText = 32
-        //document.getElementById("humidity-var").innerText = 100
+const rain_var = document.getElementById("rain-var")
 
-        setInterval(function()
-        {
-            getTemperature();
-            getHumidity();
-        }, 2000);
-        <!------------------------------------------------------------->
-        function getTemperature()
-        {
-            var DHT11Request = new XMLHttpRequest();
-            DHT11Request.onreadystatechange = function()
-            {
-            if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-            {
-                document.getElementById("temperature-var").innerHTML = this.responseText;
-            }
-            };
-            DHT11Request.open("GET", "readT", true);
-            DHT11Request.send();
+//RAW data
+const light_RAW_var = document.getElementById("light-RAW-var")
+const rain_RAW_var = document.getElementById("rain-RAW-var")
+const wind_RAW_var = document.getElementById("wind-RAW-var")
+
+const POST_var = document.getElementById("POST-var")
+POST_var.innerText = "true"
+
+setInterval(function()
+{
+    getTemperature();
+    getHumidity();
+    getLight();
+    getWind();
+    getRain();
+}, 2000);
+
+
+function getTemperature()
+{
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        document.getElementById("temperature-var").innerHTML = this.responseText;
+    }
+    };
+    DHT11Request.open("GET", "readT", true);
+    DHT11Request.send();
+}
+
+function getHumidity()
+{
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        document.getElementById("humidity-var").innerHTML = this.responseText;
+    }
+    };
+    DHT11Request.open("GET", "readH", true);
+    DHT11Request.send();
+}
+
+function getLight(){
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        light_RAW_var.innerHTML = this.responseText
+        document.getElementById("light-var").innerHTML = this.responseText;
+    }
+    };
+    DHT11Request.open("GET", "readL", true);
+    DHT11Request.send();
+}
+
+function getRain(){
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        rain_RAW_var.innerHTML = this.responseText
+        let value = this.responseText, valueString
+        rain_var.style.color = ""
+
+        if (value >= 1020){
+            valueString = "Clear sky";
+        } else if(value >= 800 && value < 1020){
+            valueString = "Some droplets";
+        } else if(value >= 600 && value < 800){
+            valueString = "It's raining";
+        } else if(value >= 50 && value < 600){
+            valueString = "Heavy raining";
+        } else if(value >= 0 && value < 50){
+            valueString = "Metal on sensor";
+            rain_var.style.color = "red"
         }
 
-        function getHumidity()
-        {
-            var DHT11Request = new XMLHttpRequest();
-            DHT11Request.onreadystatechange = function()
-            {
-            if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-            {
-                document.getElementById("humidity-var").innerHTML = this.responseText;
-            }
-            };
-            DHT11Request.open("GET", "readH", true);
-            DHT11Request.send();
-        }
+        rain_var.innerHTML =  valueString;
+    }
+    };
+    DHT11Request.open("GET", "readR", true);
+    DHT11Request.send();
+}
+
+function getWind(){
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        wind_RAW_var.innerHTML = this.responseText
+        document.getElementById("wind-var").innerHTML = this.responseText;
+    }
+    };
+    DHT11Request.open("GET", "readW", true);
+    DHT11Request.send();
+}
+
+function getSRCS(){
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        document.getElementById("POST-var").innerHTML = this.responseText;
+    }
+    };
+    DHT11Request.open("GET", "readSRCS", true);
+    DHT11Request.send();
+}
+
+function getGeneral(){
+    var DHT11Request = new XMLHttpRequest();
+    DHT11Request.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        //document.getElementById("POST-var").innerHTML = this.responseText;
+        //format
+    }
+    };
+    DHT11Request.open("GET", "readGENERAL", true);
+    DHT11Request.send();
+}
+
+function updateN2YO(){
+    //fetch from n2yo api
+    console.log("wait a sec, not done yet")
+    return
+}
 
     </script>
 </body>
