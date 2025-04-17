@@ -17,8 +17,6 @@
 - [X] [Ajax sd web](https://www.youtube.com/watch?v=E3uCFFf3hxc)
 
 ## Snippets
-> [!WARNING]
-> Those snippets need to be tested
 
 Pin Format: NAMEPIN
 
@@ -46,7 +44,7 @@ float getHumidity(){
 ## Rain Sensor
 ``` cpp
 int getRain(){  //To format raw input 
-  int RL = analogRead(RAINPIN)
+  int RL = analogRead(RAINPIN);
   return  RL;
 }
 ```
@@ -54,7 +52,7 @@ int getRain(){  //To format raw input
 ## Light Sensor
 ``` cpp
 int getLight(){  //To format raw input 
-  int LL = analogRead(PHOTOPIN)
+  int LL = analogRead(PHOTOPIN);
   return  LL;
 }
 ```
@@ -62,7 +60,7 @@ int getLight(){  //To format raw input
 ## Anemometer
 ``` cpp
 float getWind(){  //To format raw input (?)
-  int WS = analogRead(ANEMOPIN)
+  int WS = analogRead(ANEMOPIN);
   return  WS;
 }
 ```
@@ -72,7 +70,7 @@ float getWind(){  //To format raw input (?)
 - 1019~800 = some droplets
 - 799~600 = rain
 - 599~50 = heavy rain
-- >50 = metal on the sensor
+- 50~0 = metal on the sensor
 
 ## Web datasheet
 - **AA** - Antenna Azimuth
