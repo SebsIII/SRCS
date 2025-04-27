@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -254,8 +255,6 @@ footer{
     color: #e2c105;
 }
 </style>
-
-
 <body>
     <header>
         <p id="SRCS-title" onclick="location.href='index.html'">SRCS</p>
@@ -269,7 +268,6 @@ footer{
                 <p class="data">AA = <a id="AA-var">N/A</a></p>
                 <p class="data">AD = <a id="AD-var">N/A</a></p>
                 <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
-                <p class="data">Rain = <a id="R-var">N/A</a></p>
                 <p class="data">MRC = <a id="MRC-var">N/A</a></p>
             </div>
             <div id="N2YO-data-div" class="info-div">
@@ -307,7 +305,7 @@ footer{
             <div id="status-div"></div>
         </div>
         <div id="setup-div">
-            <button id="align-antenna-btn">Align antenna to startAz</button>
+            <button id="align-antenna-btn" onclick="alignAntennaTo0()">Align antenna to startAz</button>
             <p><a id="time-left">N/A</a> time left.</p>
         </div>
     </main>   
@@ -315,7 +313,6 @@ footer{
         <p id="signature" onclick="location.href='https://github.com/SebsIII'">By Sebs_</p>
     </footer>
     <script>
-
 document.getElementById("time-left").innerText = "10:03"
 
 const rain_var = document.getElementById("rain-var")
@@ -325,11 +322,17 @@ const light_RAW_var = document.getElementById("light-RAW-var")
 const rain_RAW_var = document.getElementById("rain-RAW-var")
 const wind_RAW_var = document.getElementById("wind-RAW-var")
 
+//GENERAL data
+const AA_var = document.getElementById("AA-var")
+const AD_var = document.getElementById("AD-var")
 const POST_var = document.getElementById("POST-var")
+
 POST_var.innerText = "true"
+AD_var.innerText = "counter-clockwise"
 
 setInterval(function()
 {
+    getGeneral();
     getTemperature();
     getHumidity();
     getLight();
@@ -340,35 +343,35 @@ setInterval(function()
 
 function getTemperature()
 {
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         document.getElementById("temperature-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readT", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readT", true);
+    SRCSRequest.send();
 }
 
 function getHumidity()
 {
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         document.getElementById("humidity-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readH", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readH", true);
+    SRCSRequest.send();
 }
 
 function getLight(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
@@ -376,13 +379,13 @@ function getLight(){
         document.getElementById("light-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readL", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readL", true);
+    SRCSRequest.send();
 }
 
 function getRain(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
@@ -406,13 +409,13 @@ function getRain(){
         rain_var.innerHTML =  valueString;
     }
     };
-    DHT11Request.open("GET", "readR", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readR", true);
+    SRCSRequest.send();
 }
 
 function getWind(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
@@ -420,35 +423,34 @@ function getWind(){
         document.getElementById("wind-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readW", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readW", true);
+    SRCSRequest.send();
 }
 
 function getSRCS(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         document.getElementById("POST-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readSRCS", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readSRCS", true);
+    SRCSRequest.send();
 }
 
 function getGeneral(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
-        //document.getElementById("POST-var").innerHTML = this.responseText;
-        //format
+        AA_var.innerHTML = this.responseText
     }
     };
-    DHT11Request.open("GET", "readGENERAL", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readGENERAL", true);
+    SRCSRequest.send();
 }
 
 function updateN2YO(){
@@ -456,7 +458,17 @@ function updateN2YO(){
     console.log("wait a sec, not done yet")
     return
 }
-
+function alignAntennaTo0(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        console.log("Antenna-align-to-0 sent and received.")
+    }
+    };
+    SRCSRequest.open("GET", "alignAntennaTo0", true); // add formatting of url
+    SRCSRequest.send();
+}
     </script>
-</body>
 </html>

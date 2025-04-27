@@ -7,11 +7,39 @@ const light_RAW_var = document.getElementById("light-RAW-var")
 const rain_RAW_var = document.getElementById("rain-RAW-var")
 const wind_RAW_var = document.getElementById("wind-RAW-var")
 
+//GENERAL data
+const AA_var = document.getElementById("AA-var")
+const AD_var = document.getElementById("AD-var")
 const POST_var = document.getElementById("POST-var")
+
+//N2YO data
+const NORAD_var = document.getElementById("NORAD-var")
+const el_var = document.getElementById("el-var")
+const passes_var = document.getElementById("passes-var")
+const sAz_var = document.getElementById("startAz-var")
+const maxAz_var = document.getElementById("maxAz-var")
+const eAz_var = document.getElementById("endAz-var")
+const sTime_var = document.getElementById("sTime-var")
+const eTime_var = document.getElementById("eTime-var")
+
 POST_var.innerText = "true"
+AD_var.innerHTML = "counter-clockwise"
+
+let satellites = {
+    25338: "NOAA15",
+    28654: "NOAA18",
+    33591: "NOAA19"
+}
+
+//HIDE THOSE IN GITHUB
+let observer_lat = "1323.13" 
+let observer_lng = "41.321"
+let observer_alt = "102"
+let apiKey = "APIKEY"
 
 setInterval(function()
 {
+    getGeneral();
     getTemperature();
     getHumidity();
     getLight();
@@ -22,35 +50,35 @@ setInterval(function()
 
 function getTemperature()
 {
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         document.getElementById("temperature-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readT", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readT", true);
+    SRCSRequest.send();
 }
 
 function getHumidity()
 {
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         document.getElementById("humidity-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readH", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readH", true);
+    SRCSRequest.send();
 }
 
 function getLight(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
@@ -58,13 +86,13 @@ function getLight(){
         document.getElementById("light-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readL", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readL", true);
+    SRCSRequest.send();
 }
 
 function getRain(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
@@ -88,13 +116,13 @@ function getRain(){
         rain_var.innerHTML =  valueString;
     }
     };
-    DHT11Request.open("GET", "readR", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readR", true);
+    SRCSRequest.send();
 }
 
 function getWind(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
@@ -102,39 +130,62 @@ function getWind(){
         document.getElementById("wind-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readW", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readW", true);
+    SRCSRequest.send();
 }
 
 function getSRCS(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         document.getElementById("POST-var").innerHTML = this.responseText;
     }
     };
-    DHT11Request.open("GET", "readSRCS", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readSRCS", true);
+    SRCSRequest.send();
 }
 
 function getGeneral(){
-    var DHT11Request = new XMLHttpRequest();
-    DHT11Request.onreadystatechange = function()
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
-        //document.getElementById("POST-var").innerHTML = this.responseText;
-        //format
+        AA_var.innerHTML = this.responseText
     }
     };
-    DHT11Request.open("GET", "readGENERAL", true);
-    DHT11Request.send();
+    SRCSRequest.open("GET", "readGENERAL", true);
+    SRCSRequest.send();
 }
 
 function updateN2YO(){
     //fetch from n2yo api
     console.log("wait a sec, not done yet")
+    
+    var noradID;
+    var isValid = false;
+    var i = 0;
+    while(!isValid){
+        noradID = satellites[i];
+        var reqUrl = `https://api.n2yo.com/rest/v1/satellite/radiopasses/${noradID}/${observer_lat}/${observer_lng}/${observer_alt}/1/0&apiKey=${apiKey}`
+
+        i += 1
+    }
+
     return
+}
+
+function alignAntennaTo0(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        console.log("Antenna-align-to-0 sent and received.")
+    }
+    };
+    SRCSRequest.open("GET", "alignAntennaTo0", true); // add formatting of url
+    SRCSRequest.send();
 }
