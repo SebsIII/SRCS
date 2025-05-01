@@ -236,3 +236,26 @@ footer{
     transform: scale(115%);
     color: #e2c105;
 }
+
+#popup-wrapper{
+    position: absolute;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px) brightness(90%);
+    
+}
+
+#popup-div{
+    z-index: 5;
+    width: 30vw;
+    min-height: 30vh;
+    background-color: #9D4EDD;
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 100px rgba(0,0,0,.8), 100px rgba(0,0,0,.1);
+}

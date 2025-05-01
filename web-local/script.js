@@ -1,6 +1,10 @@
 document.getElementById("time-left").innerText = "10:03"
 
-const rain_var = document.getElementById("rain-var")
+//SETUP
+const main = document.querySelector("main")
+
+//BTNS
+const align_btn = document.getElementById("align-antenna-btn")
 
 //RAW data
 const light_RAW_var = document.getElementById("light-RAW-var")
@@ -11,6 +15,8 @@ const wind_RAW_var = document.getElementById("wind-RAW-var")
 const AA_var = document.getElementById("AA-var")
 const AD_var = document.getElementById("AD-var")
 const POST_var = document.getElementById("POST-var")
+
+const rain_var = document.getElementById("rain-var")
 
 //N2YO data
 const NORAD_var = document.getElementById("NORAD-var")
@@ -37,6 +43,7 @@ let observer_lng = "41.321"
 let observer_alt = "102"
 let apiKey = "APIKEY"
 
+/*
 setInterval(function()
 {
     getGeneral();
@@ -46,6 +53,16 @@ setInterval(function()
     getWind();
     getRain();
 }, 2000);
+*/
+
+align_btn.addEventListener("click",() => {
+    console.log("Align-btn clicked.")
+    main.style.filter = "blur(1px)"
+
+})
+
+
+
 
 
 function getTemperature()
