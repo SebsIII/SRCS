@@ -254,6 +254,84 @@ footer{
     transform: scale(115%);
     color: #e2c105;
 }
+
+#popup-wrapper{
+    position: absolute;
+    align-self: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.2s;
+    
+}
+
+#popup-div{
+    z-index: 3;
+    display: none;
+    opacity: 0%;
+    z-index: 5;
+    width: 25vw;
+    min-height: 30vh;
+    background-color: #9D4EDD;
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 10px 10px rgba(0,0,0,0.4);
+    transition: all 0.2s;
+    flex-direction: column;
+    align-items: center;
+}
+
+#popup-title{
+    margin: 4px;
+    font-family: Oswald;
+}
+
+#popup-subtitle{
+    margin: 4px;
+    text-align: center;
+}
+
+#popup-psw{
+    height: 5vh;
+    width: 60%;
+    margin: 16px 0px;
+    border: none;
+    border-radius: 16px;
+    box-sizing: border-box;
+    padding: 16px
+}
+
+#popup-btn{
+    height: 3vh;
+    width: 30%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#popup-btn:hover{
+    transform: scale(105%);
+    filter: brightness(95%);
+}
+
+#antenna-animation{
+    width: 30%;
+}
+
+#antenna-animation-div{
+    padding: 0%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    height: fit-content;
+    right: 20vw;
+    top: 12vh;
+}
 </style>
 <body>
     <header>
@@ -273,6 +351,7 @@ footer{
             <div id="N2YO-data-div" class="info-div">
                 <p id="N2YO-title" onclick="updateN2YO()">N2YO</p>
                 <p class="data">NORAD = <a id="NORAD-var">N/A</a></p>
+                <p class="data">El = <a id="el-var">N/A</a></p>
                 <p class="data">Passes = <a id="passes-var">N/A</a></p>
                 <p class="data">startAz = <a id="startAz-var">N/A</a></p>
                 <p class="data">maxAz = <a id="maxAz-var">N/A</a></p>
@@ -287,8 +366,9 @@ footer{
                 <p class="data">Wind = <a id="wind-RAW-var">N/A</a></p>
             </div>
             
-            <div id="antenne-animation-div">
-                <div id="antenna-icon"></div>
+            <div id="antenna-animation-div">
+                <b>N</b>
+                <img src="https://github.com/SebsIII/SRCS/blob/6e29a0632d3146aea96081d0aedd969c88c578ac/web-local/antenna-animation.png?raw=true" id="antenna-animation">
             </div>
         </div>
         <div id="SRCS-data-div" class="info-div">
@@ -305,17 +385,35 @@ footer{
             <div id="status-div"></div>
         </div>
         <div id="setup-div">
-            <button id="align-antenna-btn" onclick="alignAntennaTo0()">Align antenna to startAz</button>
+            <button id="align-antenna-btn">Align antenna to startAz</button> <!--Dispplay a panel that requires a passwd tao align antenna-->
             <p><a id="time-left">N/A</a> time left.</p>
         </div>
-    </main>   
+    </main>
+    <div id="popup-wrapper">
+        <div id="popup-div">
+            <h1 id="popup-title">Warning!</h1>
+            <p id="popup-subtitle">This action needs a <b>password</b> to continue, insert it in the box below to continue.</p>
+            <input type="password" placeholder="password" id="popup-psw">
+            <button type="submit" id="popup-btn">Send</button>
+        </div>
+    </div>   
     <footer>
         <p id="signature" onclick="location.href='https://github.com/SebsIII'">By Sebs_</p>
     </footer>
     <script>
 document.getElementById("time-left").innerText = "10:03"
 
-const rain_var = document.getElementById("rain-var")
+//SETUP
+const main = document.querySelector("main")
+const popup_wrapper = document.getElementById("popup-wrapper")
+const popup_div = document.getElementById("popup-div")
+const popup_psw = document.getElementById("popup-psw")
+
+const antenna_animation = document.getElementById("antenna-animation")
+
+//BTNS
+const align_btn = document.getElementById("align-antenna-btn")
+const popup_btn = document.getElementById("popup-btn") 
 
 //RAW data
 const light_RAW_var = document.getElementById("light-RAW-var")
@@ -327,8 +425,31 @@ const AA_var = document.getElementById("AA-var")
 const AD_var = document.getElementById("AD-var")
 const POST_var = document.getElementById("POST-var")
 
+const rain_var = document.getElementById("rain-var")
+
+//N2YO data
+const NORAD_var = document.getElementById("NORAD-var")
+const el_var = document.getElementById("el-var")
+const passes_var = document.getElementById("passes-var")
+const sAz_var = document.getElementById("startAz-var")
+const maxAz_var = document.getElementById("maxAz-var")
+const eAz_var = document.getElementById("endAz-var")
+const sTime_var = document.getElementById("sTime-var")
+const eTime_var = document.getElementById("eTime-var")
+
 POST_var.innerText = "true"
-AD_var.innerText = "counter-clockwise"
+AD_var.innerHTML = "counter-clockwise"
+
+let satellites = [
+    25338, 28654, 33591
+]
+
+let observer_lat = "41.217389" 
+let observer_lng = "14.507287"
+let observer_alt = "95"
+//HIDE THAT IN GITHUB
+let apiKey = ""
+
 
 setInterval(function()
 {
@@ -339,6 +460,27 @@ setInterval(function()
     getWind();
     getRain();
 }, 2000);
+
+
+align_btn.addEventListener("click",() => {
+    console.log("Align-btn clicked.")
+    popup_wrapper.style.display = "flex"
+    popup_div.style.display = "flex"
+    setTimeout(() => {
+        popup_wrapper.style.backdropFilter = "blur(5px) brightness(90%)" 
+        popup_div.style.opacity = "100%"
+    }, 20)
+
+})
+
+popup_btn.addEventListener("click", () => {
+    var psw = popup_psw.value
+    if(psw){
+        console.log(popup_psw.value)
+        popup_psw.value = ""
+        //make the get req
+    }
+})
 
 
 function getTemperature()
@@ -446,18 +588,40 @@ function getGeneral(){
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
-        AA_var.innerHTML = this.responseText
+        var angle = this.responseText
+        AA_var.innerHTML = angle
+        antenna_animation.style.transform = `rotate(${angle}deg)`
     }
     };
     SRCSRequest.open("GET", "readGENERAL", true);
     SRCSRequest.send();
 }
 
-function updateN2YO(){
-    //fetch from n2yo api
-    console.log("wait a sec, not done yet")
+function updateN2YO(){    
+    var noradID;
+    var isValid = false;
+    var i = 0;
+    //while(!isValid){
+        noradID = satellites[i];
+        var reqUrl = `https://api.n2yo.com/rest/v1/satellite/radiopasses/${noradID}/${observer_lat}/${observer_lng}/${observer_alt}/1/0&apiKey=${apiKey}`
+
+        fetch(reqUrl, {
+                    headers: {
+                        'content-type':'application/json',
+                        'Access-Control-Allow-Origin':'*'
+                    }
+                  })
+                  .then(response => response.json())
+                  .then(data => console.log(data))
+                  .catch(error => console.error('Fetch error:', error));
+        
+
+        i += 1
+    //}
+
     return
 }
+
 function alignAntennaTo0(){
     var SRCSRequest = new XMLHttpRequest();
     SRCSRequest.onreadystatechange = function()
@@ -471,4 +635,5 @@ function alignAntennaTo0(){
     SRCSRequest.send();
 }
     </script>
+</body>
 </html>

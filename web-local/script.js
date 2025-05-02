@@ -47,7 +47,7 @@ let observer_alt = "95"
 //HIDE THAT IN GITHUB
 let apiKey = ""
 
-/*
+
 setInterval(function()
 {
     getGeneral();
@@ -57,7 +57,7 @@ setInterval(function()
     getWind();
     getRain();
 }, 2000);
-*/
+
 
 align_btn.addEventListener("click",() => {
     console.log("Align-btn clicked.")
@@ -185,8 +185,9 @@ function getGeneral(){
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
-        AA_var.innerHTML = this.responseText
-        antenna_animation.style.transform = `rotate(${Math.abs(this.responseText)})`
+        var angle = this.responseText
+        AA_var.innerHTML = angle
+        antenna_animation.style.transform = `rotate(${angle}deg)`
     }
     };
     SRCSRequest.open("GET", "readGENERAL", true);
