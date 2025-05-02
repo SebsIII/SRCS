@@ -2,9 +2,15 @@ document.getElementById("time-left").innerText = "10:03"
 
 //SETUP
 const main = document.querySelector("main")
+const popup_wrapper = document.getElementById("popup-wrapper")
+const popup_div = document.getElementById("popup-div")
+const popup_psw = document.getElementById("popup-psw")
+
+const antenna_animation = document.getElementById("antenna-animation")
 
 //BTNS
 const align_btn = document.getElementById("align-antenna-btn")
+const popup_btn = document.getElementById("popup-btn") 
 
 //RAW data
 const light_RAW_var = document.getElementById("light-RAW-var")
@@ -31,17 +37,15 @@ const eTime_var = document.getElementById("eTime-var")
 POST_var.innerText = "true"
 AD_var.innerHTML = "counter-clockwise"
 
-let satellites = {
-    25338: "NOAA15",
-    28654: "NOAA18",
-    33591: "NOAA19"
-}
+let satellites = [
+    25338, 28654, 33591
+]
 
-//HIDE THOSE IN GITHUB
-let observer_lat = "1323.13" 
-let observer_lng = "41.321"
-let observer_alt = "102"
-let apiKey = "APIKEY"
+let observer_lat = "41.217389" 
+let observer_lng = "14.507287"
+let observer_alt = "95"
+//HIDE THAT IN GITHUB
+let apiKey = ""
 
 /*
 setInterval(function()
@@ -57,12 +61,23 @@ setInterval(function()
 
 align_btn.addEventListener("click",() => {
     console.log("Align-btn clicked.")
-    main.style.filter = "blur(1px)"
+    popup_wrapper.style.display = "flex"
+    popup_div.style.display = "flex"
+    setTimeout(() => {
+        popup_wrapper.style.backdropFilter = "blur(5px) brightness(90%)" 
+        popup_div.style.opacity = "100%"
+    }, 20)
 
 })
 
-
-
+popup_btn.addEventListener("click", () => {
+    var psw = popup_psw.value
+    if(psw){
+        console.log(popup_psw.value)
+        popup_psw.value = ""
+        //make the get req
+    }
+})
 
 
 function getTemperature()
@@ -171,25 +186,34 @@ function getGeneral(){
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         AA_var.innerHTML = this.responseText
+        antenna_animation.style.transform = `rotate(${Math.abs(this.responseText)})`
     }
     };
     SRCSRequest.open("GET", "readGENERAL", true);
     SRCSRequest.send();
 }
 
-function updateN2YO(){
-    //fetch from n2yo api
-    console.log("wait a sec, not done yet")
-    
+function updateN2YO(){    
     var noradID;
     var isValid = false;
     var i = 0;
-    while(!isValid){
+    //while(!isValid){
         noradID = satellites[i];
         var reqUrl = `https://api.n2yo.com/rest/v1/satellite/radiopasses/${noradID}/${observer_lat}/${observer_lng}/${observer_alt}/1/0&apiKey=${apiKey}`
 
+        fetch(reqUrl, {
+                    headers: {
+                        'content-type':'application/json',
+                        'Access-Control-Allow-Origin':'*'
+                    }
+                  })
+                  .then(response => response.json())
+                  .then(data => console.log(data))
+                  .catch(error => console.error('Fetch error:', error));
+        
+
         i += 1
-    }
+    //}
 
     return
 }
