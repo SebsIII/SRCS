@@ -103,26 +103,41 @@ footer{
     background-color: #9D4EDD;
     border: none;
     border-radius: 16px;
-    font-family: Questrial;
+    font-family: Oswald;
     font-size: 20px;
     transition: all 0.3s;
     margin: 0px 16px 0px 0px;
 }
-#align-antenna-btn:hover{
+
+#align-north-btn{
+    width: 8vw;
+    height: 6vh;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 16px;
+    transition: all 0.3s;
+    background-color: #c3ae2a;
+    font-family: Oswald;
+    font-size: 16px;
+}
+
+.setup-btns:hover{
     cursor: pointer;
     transform: scale(105%);
     filter: brightness(95%);
 }
 
+
 #setup-div{
     width: fit-content;
-    height: 8vh;
+    min-height: 8vh;
     margin: 0px;
     position: absolute;
     bottom: 10vh;
     left: 6.5vw;    
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: left;
 }
 
 #status-div{
@@ -181,20 +196,6 @@ footer{
     width: fit-content;
 }
 #general-title:hover{
-    cursor: pointer;
-    transform: scale(115%);
-    color: #e2c105;
-}
-
-#N2YO-title{
-    margin: 8px;
-    font-family: Oswald;
-    font-size: 28px;
-    color: #0B0B0B;
-    transition: all 0.3s;
-    width: fit-content;
-}
-#N2YO-title:hover{
     cursor: pointer;
     transform: scale(115%);
     color: #e2c105;
@@ -301,6 +302,7 @@ footer{
 
 #antenna-animation{
     width: 30%;
+    transition: all 0.7s;
 }
 
 #antenna-animation-div{

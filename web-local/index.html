@@ -30,17 +30,6 @@
                 <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
                 <p class="data">MRC = <a id="MRC-var">N/A</a></p>
             </div>
-            <div id="N2YO-data-div" class="info-div">
-                <p id="N2YO-title" onclick="updateN2YO()">N2YO</p>
-                <p class="data">NORAD = <a id="NORAD-var">N/A</a></p>
-                <p class="data">El = <a id="el-var">N/A</a></p>
-                <p class="data">Passes = <a id="passes-var">N/A</a></p>
-                <p class="data">startAz = <a id="startAz-var">N/A</a></p>
-                <p class="data">maxAz = <a id="maxAz-var">N/A</a></p>
-                <p class="data">endAz = <a id="endAz-var">N/A</a></p>
-                <p class="data">sTime = <a id="sTime-var">N/A</a></p>
-                <p class="data">eTime = <a id="eTime-var">N/A</a></p>
-            </div>
             <div id="weather-data-div" class="info-div">
                 <p id="weather-data-title" onclick="updateWeather()">Weather RAW</p>
                 <p class="data">Light = <a id="light-RAW-var">N/A</a></p>
@@ -67,8 +56,8 @@
             <div id="status-div"></div>
         </div>
         <div id="setup-div">
-            <button id="align-antenna-btn">Align antenna to startAz</button> <!--Dispplay a panel that requires a passwd tao align antenna-->
-            <p><a id="time-left">N/A</a> time left.</p>
+            <button id="align-north-btn" class="setup-btns">Align to N</button>
+            <button id="align-antenna-btn" class="setup-btns">Start Reception session</button>
         </div>
     </main>
     <div id="popup-wrapper">
@@ -80,7 +69,7 @@
         </div>
     </div>   
     <footer>
-        <p id="signature" onclick="location.href='https://github.com/SebsIII'">By Sebs_</p>
+        <p id="signature" onclick=" location.href='https://github.com/SebsIII'">By Sebs_</p>
     </footer>
     <script src="script.js"></script>
 </body>

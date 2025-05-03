@@ -25,8 +25,9 @@
 AS5600 as5600;
 Stepper mount(64, 8,6,7,5);
 DHT dht(DHTPIN, DHTTYPE);
-File HMTL_file;
+File HMTL_file, pswLog_file;
 
+String psw = "";
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -44,6 +45,12 @@ void setup()
     while (true){};
   }
   
+  pswLog_file = SD.open("psw.txt");
+  while (pswLog_file.available()){
+    psw += (char)pswLog_file.read()  ;
+  }
+  Serial.println(psw);
+
 }
 
 void loop()
@@ -126,6 +133,16 @@ void loop()
               currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
             }
             client.println("Antenna algned.");
+          }
+          else if(HTTP_req.indexOf("pswReq")>-1)
+          {
+            Serial.println(HTTP_req);
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: text/plain");
+            client.println("Connection: close");
+            client.println("Just received for now.");
+            //format HTTP req to get requested psw, and return true or false is psw's right or wrong
+            
           }
           //-------------------------------------------------------------------
           else
