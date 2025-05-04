@@ -32,7 +32,6 @@ AD_var.innerHTML = "counter-clockwise"
 var selectedCmmd;
 
 
-/*
 setInterval(function()
 {
     getGeneral();
@@ -42,7 +41,6 @@ setInterval(function()
     getWind();
     getRain();
 }, 2000);
-*/
 
 setup_btns.forEach((btn) => {
     btn.addEventListener("click",() => {
@@ -57,32 +55,34 @@ setup_btns.forEach((btn) => {
     })
 })
 
-popup_btn.addEventListener("click", () => {
+popup_btn.addEventListener("click", async () => {
     var psw = popup_psw.value
     if(psw){
         if(selectedCmmd){
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            console.log(ReqMaker(`pswReq/${psw}`))
-            // ^ this needs to return "true" or "false" from SRCS, handle that
+            const output = await ReqMaker(`pswReq/${psw}`)
+            if (output == "true"){
+                alert("login correct.")
+                //display success panel
+            }
+            else{
+                location.href = "index.html"
+            }
         }
     }
 })
 
-function ReqMaker(request){
+async function ReqMaker(request){
     var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        return this.responseText;
-    }
-    };
-    SRCSRequest.open("GET", request, true);
+    SRCSRequest.open("GET", request, false);
     SRCSRequest.send();
-}
 
+    if (SRCSRequest.status === 200 && SRCSRequest.responseText !== null) {
+        return SRCSRequest.responseText;
+    }
+}
 function getTemperature()
 {
     var SRCSRequest = new XMLHttpRequest();
@@ -190,7 +190,7 @@ function getGeneral(){
     {
         var angle = this.responseText
         AA_var.innerHTML = angle
-        antenna_animation.style.transform = `rotate(${angle}deg)`
+        antenna_animation.style.transform = `rotate(${int(angle)}deg)`
     }
     };
     SRCSRequest.open("GET", "readGENERAL", true);
