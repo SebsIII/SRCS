@@ -7,6 +7,11 @@ const popup_psw = document.getElementById("popup-psw")
 
 const antenna_animation = document.getElementById("antenna-animation")
 
+const loading_popup_div = document.getElementById("loading-popup-div")
+
+const align_popup_wrapper = document.getElementById("align-popup-wrapper")
+const align_popup_div = document.getElementById("align-popup-div")
+
 //BTNS
 const align_btn = document.getElementById("align-antenna-btn")
 const popup_btn = document.getElementById("popup-btn") 
@@ -28,10 +33,15 @@ const rain_var = document.getElementById("rain-var")
 POST_var.innerText = "true"
 AD_var.innerHTML = "counter-clockwise"
 
+
+popup_wrapper.style.display = "flex"
+align_popup_div.style.display = "flex"
+align_popup_div.style.opacity = "100%"
+
 //VARS
 var selectedCmmd;
 
-
+/*
 setInterval(function()
 {
     getGeneral();
@@ -42,10 +52,11 @@ setInterval(function()
     getRain();
 }, 2000);
 
+*/
+
 setup_btns.forEach((btn) => {
     btn.addEventListener("click",() => {
         selectedCmmd = btn.id
-        console.log("setup-btn clicked.")
         popup_wrapper.style.display = "flex"
         popup_div.style.display = "flex"
         setTimeout(() => {
@@ -62,10 +73,22 @@ popup_btn.addEventListener("click", async () => {
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            const output = await ReqMaker(`pswReq/${psw}`)
+            //const output = await ReqMaker(`pswReq/${psw}`)
+            const output = "true" //output flag
             if (output == "true"){
-                alert("login correct.")
-                //display success panel
+                if(selectedCmmd == "align-antenna-btn"){
+                    console.log("align-antenna command, no operations after")
+                }
+                else if(selectedCmmd == "align-north-btn"){
+                    alignAntennaTo0() // <-- should continue to run commands after since is async, check though
+                }
+                popup_wrapper.style.cursor = "wait"
+                popup_div.style.display = "none"    
+                loading_popup_div.style.display = "flex"
+                setTimeout(() => {
+                    loading_popup_div.style.opacity = "100%"
+                }, 30)
+                
             }
             else{
                 location.href = "index.html"
@@ -201,11 +224,14 @@ function alignAntennaTo0(){
     var SRCSRequest = new XMLHttpRequest();
     SRCSRequest.onreadystatechange = function()
     {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        console.log("Antenna-align-to-0 sent and received.")
-    }
+        if(this.readyState == 3){   // <-- 2 means "header received", 3 "loading", which one's better?
+            console.log("req sent and received.")
+        }
+        else if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+        {
+            console.log("Antenna aligned to N.")
+        }
     };
-    SRCSRequest.open("GET", "alignAntennaTo0", true); // add formatting of url
+    SRCSRequest.open("GET", "alignAntennaTo0", true); 
     SRCSRequest.send();
 }

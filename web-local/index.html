@@ -61,13 +61,40 @@
         </div>
     </main>
     <div id="popup-wrapper">
-        <div id="popup-div">
-            <h1 id="popup-title">Warning!</h1>
-            <p id="popup-subtitle">This action needs a <b>password</b> to continue, insert it in the box below to continue.</p>
+        <div class="popup-class" id="popup-div">
+            <h1 class="loading-popup-class">Warning!</h1>
+            <p class="popup-subtitle-class">This action needs a <b>password</b> to continue, insert it in the box below to continue.</p>
             <input type="password" placeholder="password" id="popup-psw">
             <button type="submit" id="popup-btn">Send</button>
         </div>
-    </div>   
+        <div class="popup-class" id="align-popup-div">
+            <h1 id="align-popup-title" class="login-popup-class">The login was <b class="success">successful</b>.</h1>
+            <p class="popup-subtitle-class">Enter the command to send:</p>
+            <div id="align-popup-item-formatter">
+                <div class="item-popup-formatter">
+                    <p>Align from:</p>
+                    <input type="text" placeholder=" °" class="popup-inputs">
+                </div>
+                <div class="item-popup-formatter">
+                    <p>To: </p>
+                    <input type="text" placeholder=" °" class="popup-inputs">
+                </div>
+                <div class="item-popup-formatter">
+                    <p>For: </p>
+                    <input type="text" placeholder=" s" class="popup-inputs">
+                </div>
+                <div class="item-popup-formatter">
+                    <p>After: </p>
+                    <input type="text" placeholder=" s" class="popup-inputs">
+                </div>
+            </div>
+        </div>
+        <div class="popup-class" id="loading-popup-div">
+            <h1 class="login-popup-class">The login was <b class="success">successful</b>.</h1>
+            <p class="popup-subtitle-class">This action is going to be processed, the page will automatically refresh once completed.</p>
+            <p id="loading-popup-warning">DO NOT REFRESH THE PAGE AND/OR SEND OTHER HTTP REQUESTS WHILE YOU SEE THIS POPUP.</p>
+        </div>
+    </div>  
     <footer>
         <p id="signature" onclick=" location.href='https://github.com/SebsIII'">By Sebs_</p>
     </footer>

@@ -1,3 +1,6 @@
+.success{
+    color: #60d421;
+}
 
 body{
     width: 100vw;
@@ -250,7 +253,7 @@ footer{
     
 }
 
-#popup-div{
+.popup-class{
     z-index: 3;
     display: none;
     opacity: 0%;
@@ -267,14 +270,27 @@ footer{
     align-items: center;
 }
 
-#popup-title{
+.popup-subtitle-class{
+    margin: 4px;
+    text-align: center;
+}
+
+.loading-popup-class{
     margin: 4px;
     font-family: Oswald;
 }
 
-#popup-subtitle{
-    margin: 4px;
+#loading-popup-subtitle{
+    margin: 8px;
     text-align: center;
+}
+
+#loading-popup-warning{
+    margin: 16px 8px 8px 8px;
+    text-align: center;
+    font-family: Oswald;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 #popup-psw{
@@ -315,4 +331,27 @@ footer{
     height: fit-content;
     right: 20vw;
     top: 12vh;
+}
+
+.item-popup-formatter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: Oswald;
+}
+.popup-inputs{
+    border: none;
+    border-radius: 16px;
+    height: 5vh;
+    width: 30%;
+    margin: 4px;
+    font-family: Questrial;
+}
+
+#align-popup-item-formatter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
