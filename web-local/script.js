@@ -12,11 +12,16 @@ const loading_popup_div = document.getElementById("loading-popup-div")
 const align_popup_wrapper = document.getElementById("align-popup-wrapper")
 const align_popup_div = document.getElementById("align-popup-div")
 
+const from_input = document.getElementById("from-input")
+const to_input = document.getElementById("to-input")
+const for_input = document.getElementById("for-input")
+const after_input = document.getElementById("after-input")
+
 //BTNS
 const align_btn = document.getElementById("align-antenna-btn")
 const popup_btn = document.getElementById("popup-btn") 
-
 const setup_btns = document.querySelectorAll(".setup-btns")
+const send_cmmd_btn = document.getElementById("send-cmmd-btn")
 
 //RAW data
 const light_RAW_var = document.getElementById("light-RAW-var")
@@ -32,11 +37,6 @@ const rain_var = document.getElementById("rain-var")
 
 POST_var.innerText = "true"
 AD_var.innerHTML = "counter-clockwise"
-
-
-popup_wrapper.style.display = "flex"
-align_popup_div.style.display = "flex"
-align_popup_div.style.opacity = "100%"
 
 //VARS
 var selectedCmmd;
@@ -77,25 +77,57 @@ popup_btn.addEventListener("click", async () => {
             const output = "true" //output flag
             if (output == "true"){
                 if(selectedCmmd == "align-antenna-btn"){
-                    console.log("align-antenna command, no operations after")
+                    popup_div.style.display = "none"
+                    align_popup_div.style.display = "none"    
+                    align_popup_div.style.display = "flex"
+                    setTimeout(() => {
+                        align_popup_div.style.opacity = "100%"
+                    }, 30)
+
                 }
                 else if(selectedCmmd == "align-north-btn"){
                     alignAntennaTo0() // <-- should continue to run commands after since is async, check though
+                    showLoading()
                 }
-                popup_wrapper.style.cursor = "wait"
-                popup_div.style.display = "none"    
-                loading_popup_div.style.display = "flex"
-                setTimeout(() => {
-                    loading_popup_div.style.opacity = "100%"
-                }, 30)
+                
                 
             }
             else{
-                location.href = "index.html"
+                location.href = ""
             }
         }
     }
 })
+
+send_cmmd_btn.addEventListener("click",async () => {
+    let from_value = Math.abs(from_input.value)
+    let to_value = Math.abs(to_input.value)
+    let for_value = Math.abs(for_input.value)
+    let after_value = Math.abs(after_input.value)
+
+    if(from_value != "" && to_value != "" && for_value != "" && after_value != ""){
+        if(from_value == to_value){
+            alert("error: from_value = to_value")
+            location.href = ""
+        } 
+        else if(for_value == 0){
+            alert("error: for_value = 0")
+            location.href = ""
+        }
+        else{
+            console.log(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`) // delete that after testing
+            let output = await ReqMaker(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`)
+            //manage output
+            align_popup_div.style.display = "none"
+            showLoading()
+            console.log(output)
+        }
+    }
+
+
+
+})
+
 
 async function ReqMaker(request){
     var SRCSRequest = new XMLHttpRequest();
@@ -224,7 +256,7 @@ function alignAntennaTo0(){
     var SRCSRequest = new XMLHttpRequest();
     SRCSRequest.onreadystatechange = function()
     {
-        if(this.readyState == 3){   // <-- 2 means "header received", 3 "loading", which one's better?
+        if(this.readyState == 3 && this.status == 200){   // <-- 2 means "header received", 3 "loading", which one's better?
             console.log("req sent and received.")
         }
         else if(this.readyState == 4 && this.status == 200 && this.responseText != null)
@@ -234,4 +266,13 @@ function alignAntennaTo0(){
     };
     SRCSRequest.open("GET", "alignAntennaTo0", true); 
     SRCSRequest.send();
+}
+
+function showLoading(){
+    popup_wrapper.style.cursor = "wait"
+    popup_div.style.display = "none"    
+    loading_popup_div.style.display = "flex"
+    setTimeout(() => {
+        loading_popup_div.style.opacity = "100%"
+    }, 30)
 }

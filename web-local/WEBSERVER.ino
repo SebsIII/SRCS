@@ -5,7 +5,7 @@
   stores and hosts a web server and does calculations in order to get,
   analyze and send the sensors' data to each client.
 
-  https://github.com/SebsIII/SRCS
+  Documentation and assets: https://github.com/SebsIII/SRCS
 
 */
 #include <SPI.h>
@@ -27,7 +27,9 @@ Stepper mount(64, 8,6,7,5);
 DHT dht(DHTPIN, DHTTYPE);
 File HMTL_file, pswLog_file;
 
-String psw, pswAttempt;
+String psw, pswAttempt, alignCmmd;
+int align_from = -1, align_to = -1, align_for =-1, align_after = -1, from_value, to_value, for_value, after_value ;
+int startPoint, endPoint;
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -166,6 +168,56 @@ void loop()
             }
             pswAttempt = "";
             
+            
+          }
+          else if(HTTP_req.indexOf("alignCmmd")>-1)
+          {
+            Serial.println("Antenna align requested.");
+
+            for (int i = HTTP_req.indexOf("alignCmmd"); i < HTTP_req.length(); i++){
+              while(HTTP_req[i] != ' '){
+                alignCmmd += HTTP_req[i];
+              }
+              break;
+            }
+            
+            startPoint = alignCmmd.indexOf('/');
+            endPoint = alignCmmd.indexOf('/', startPoint + 1);
+            
+            from_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+
+            startPoint = endPoint;
+            endPoint = alignCmmd.indexOf('/', startPoint + 1);
+
+            to_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+
+            startPoint = endPoint;
+            endPoint = alignCmmd.indexOf('/', startPoint + 1);
+
+            for_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+
+            startPoint = endPoint;
+            endPoint = alignCmmd.indexOf('/', startPoint + 1);
+
+            after_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+
+            startPoint = endPoint;
+            endPoint = alignCmmd.indexOf('/', startPoint + 1);
+
+            // ^ Unstable?
+
+            Serial.println(from_value);
+            Serial.println(to_value);
+            Serial.println(for_value);
+            Serial.println(after_value);
+
+
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: text/plain");
+            client.println("Connection: close");
+            client.println();
+            
+            //print something that comunicates the reception, then process cmmd
             
           }
           //-------------------------------------------------------------------
