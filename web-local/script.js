@@ -73,8 +73,7 @@ popup_btn.addEventListener("click", async () => {
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            //const output = await ReqMaker(`pswReq/${psw}`)
-            const output = "true" //output flag
+            const output = await ReqMaker(`pswReq/${psw}`)
             if (output == "true"){
                 if(selectedCmmd == "align-antenna-btn"){
                     popup_div.style.display = "none"
@@ -112,6 +111,10 @@ send_cmmd_btn.addEventListener("click",async () => {
         } 
         else if(for_value == 0){
             alert("error: for_value = 0")
+            location.href = ""
+        }
+        else if(from_value.toString().length > 3 || to_value.toString().length > 3 || from_value > 360 || to_value > 360){
+            alert("error: invalid inputs")
             location.href = ""
         }
         else{

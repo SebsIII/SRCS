@@ -278,6 +278,7 @@ footer{
 .loading-popup-class{
     margin: 4px;
     font-family: Oswald;
+    text-align: center;
 }
 
 #loading-popup-subtitle{
@@ -371,4 +372,9 @@ footer{
 #send-cmmd-btn:hover{
     transform: scale(105%);
     filter: brightness(95%);
+}
+
+#n2yo-logo{
+    position: absolute;
+    right: 10vw;
 }
