@@ -113,7 +113,7 @@ send_cmmd_btn.addEventListener("click",async () => {
             alert("error: for_value = 0")
             location.href = ""
         }
-        else if(from_value.toString().length > 3 || to_value.toString().length > 3 || from_value > 360 || to_value > 360){
+        else if(from_value.toString().length > 3 || to_value.toString().length > 3 || from_value > 360 || to_value > 360 || for_value == 0){
             alert("error: invalid inputs")
             location.href = ""
         }
