@@ -278,7 +278,6 @@ footer{
 .loading-popup-class{
     margin: 4px;
     font-family: Oswald;
-    text-align: center;
 }
 
 #loading-popup-subtitle{
@@ -372,35 +371,4 @@ footer{
 #send-cmmd-btn:hover{
     transform: scale(105%);
     filter: brightness(95%);
-}
-
-#n2yo-logo{
-    background-color: white;
-    padding: 16px;
-    border-radius: 16px;
-    width: 10vw;
-    align-self: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 4px 0px 0px 0px;
-}
-#n2yo-logo:hover{
-    transform: scale(105%);
-    filter: brightness(95%);
-}
-
-#n2yo-div{
-    position: absolute;
-    right: 6.5vw;
-    top: 57.5vh;
-    display: flex;
-    flex-direction: column;
-    width: 20vw;
-    align-items: center;
-    text-align: center;
-}
-
-#n2yo-p{
-    width: 80%;
-    font-size: 14px;
 }
