@@ -81,3 +81,19 @@ The **website local IP address** is set to:
 http://192.168.1.100
 ```
 
+## Usage
+
+When you want to start a new reception session, click the **Start reception session** button, a login pop-up will show up, in this, you will need to insert the password to continue. 
+
+If the password is right, a new pop-up will show up, requesting the **command info to send to the SRCS**, The command is in this format:
+``` 
+Rotate [from] degrees => [to] degrees in [for] seconds, [after] seconds
+```
+
+here's an *example* to better understand how the command format works:
+> Rotate from 0° => to 180°, in 600s, after 900s 
+
+With this command, the SRCS will **align and rotate the antenna from 0° [North] to 180° [south] in 10 min, after 15min after the reception of the command**.
+
+
+
