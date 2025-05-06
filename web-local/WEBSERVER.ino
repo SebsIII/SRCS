@@ -30,6 +30,7 @@ File HMTL_file, pswLog_file;
 String psw, pswAttempt, alignCmmd;
 int align_from = -1, align_to = -1, align_for =-1, align_after = -1, from_value, to_value, for_value, after_value ;
 int startPoint, endPoint;
+float weatherData[5];
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -111,6 +112,28 @@ void loop()
             client.println();
             client.println(getWind());
           }
+          else if(HTTP_req.indexOf("getWeather")>-1)
+          {
+            weatherData[0] = getTemperature();
+            weatherData[1] = getHumidity();
+            weatherData[2] = getLight();
+            weatherData[3] = getWind();
+            weatherData[4] = getRain();
+
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: text/plain");
+            client.println("Connection: close");
+            client.println();
+            client.print('[');
+            for (int i = 0; i < 5; i++){
+              client.print(weatherData[i]);
+              if (i != 4){
+                client.print(',');
+              }
+            }
+            client.println(']');  
+            
+          }
           else if(HTTP_req.indexOf("readGENERAL")>-1)
           {
             client.println("HTTP/1.1 200 OK");
@@ -184,22 +207,22 @@ void loop()
             startPoint = alignCmmd.indexOf('/');
             endPoint = alignCmmd.indexOf('/', startPoint + 1);
             
-            from_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+            from_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
 
             startPoint = endPoint;
             endPoint = alignCmmd.indexOf('/', startPoint + 1);
 
-            to_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+            to_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
 
             startPoint = endPoint;
             endPoint = alignCmmd.indexOf('/', startPoint + 1);
 
-            for_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+            for_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
 
             startPoint = endPoint;
             endPoint = alignCmmd.indexOf('/', startPoint + 1);
 
-            after_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+            after_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
 
             startPoint = endPoint;
             endPoint = alignCmmd.indexOf('/', startPoint + 1);
@@ -264,12 +287,12 @@ float getHumidity(){
   return  H;
 }
 
-int getLight(){  //To format raw input 
+float getLight(){  //To format raw input 
   int LL = analogRead(PHOTOPIN);
   return  LL;
 }
 
-int getRain(){  //To format raw input 
+float getRain(){  //To format raw input 
   int RL = analogRead(RAINPIN);
   return  RL;
 }

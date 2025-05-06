@@ -22,6 +22,7 @@ const align_btn = document.getElementById("align-antenna-btn")
 const popup_btn = document.getElementById("popup-btn") 
 const setup_btns = document.querySelectorAll(".setup-btns")
 const send_cmmd_btn = document.getElementById("send-cmmd-btn")
+const n2yo_btn = document.getElementById("n2yo-logo")
 
 //RAW data
 const light_RAW_var = document.getElementById("light-RAW-var")
@@ -73,7 +74,8 @@ popup_btn.addEventListener("click", async () => {
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            const output = await ReqMaker(`pswReq/${psw}`)
+            //const output = await ReqMaker(`pswReq/${psw}`)
+            const output = "true"
             if (output == "true"){
                 if(selectedCmmd == "align-antenna-btn"){
                     popup_div.style.display = "none"
@@ -129,6 +131,10 @@ send_cmmd_btn.addEventListener("click",async () => {
 
 
 
+})
+
+n2yo_btn.addEventListener("click", () => {
+    window.open("https://www.n2yo.com", "_blank")
 })
 
 
@@ -224,6 +230,19 @@ function getWind(){
     }
     };
     SRCSRequest.open("GET", "readW", true);
+    SRCSRequest.send();
+}
+
+function getWeather(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        //make a single http req to get all the weather data
+    }
+    };
+    SRCSRequest.open("GET", "getWeather", true);
     SRCSRequest.send();
 }
 
