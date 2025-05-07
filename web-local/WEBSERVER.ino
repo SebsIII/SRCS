@@ -30,6 +30,7 @@ File HMTL_file, pswLog_file;
 String psw, pswAttempt, alignCmmd;
 int align_from = -1, align_to = -1, align_for =-1, align_after = -1, from_value, to_value, for_value, after_value ;
 int startPoint, endPoint;
+int dataArray[4];
 float weatherData[5];
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
@@ -165,28 +166,15 @@ void loop()
               break;
             }
             
-            startPoint = alignCmmd.indexOf('/');
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-            
-            from_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
+            char str[] = alignCmmd; //ERROR
+            char *token = strtok(str, "/");
 
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
-            to_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
-
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
-            for_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
-
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
-            after_value = alignCmmd.substring(startPoint + 1, endPoint - (startPoint +  1)).toInt();
-
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
+            int j = 0;
+            while (token != NULL) {
+              dataArray[j] = atoi(token);
+              token = strtok(NULL, "/");
+              j++;
+            }
 
             // ^ Unstable?
 
