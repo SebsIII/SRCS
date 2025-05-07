@@ -110,15 +110,27 @@ void loop()
             client.println("Content-Type: text/plain");
             client.println("Connection: close");
             client.println();
+
+            bool isAligned = false;
+            int isClockwise = 1; //1 = counter clock-wise, -1 = clok-wise
             int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
             mount.setSpeed(100);
-            while (currentPos != 0)
-            {
-              mount.step(50);
-              delay(100);
-              currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+            if(currentPos > 180){
+              isClockwise = -1;
             }
+            while (!isAligned){   //UNSTABLE
+                if(currentPos == 0){
+                  isAligned = true;   
+                } else{
+                  mount.step(isClockwise * 20);
+                  delay(150);
+                  Serial.println(currentPos);
+                  currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+                }
+              }
             client.println("Antenna algned.");
+            isAligned = false;
+            isClockwise = 1;
           }
           else if(HTTP_req.indexOf("pswReq")>-1)
           {

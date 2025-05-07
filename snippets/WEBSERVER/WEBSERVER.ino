@@ -30,6 +30,8 @@ File HMTL_file, pswLog_file;
 String psw, pswAttempt, alignCmmd;
 int align_from = -1, align_to = -1, align_for =-1, align_after = -1, from_value, to_value, for_value, after_value ;
 int startPoint, endPoint;
+int dataArray[4];
+float weatherData[5];
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -71,45 +73,27 @@ void loop()
         if(c == '\n' && currentLineIsBlank)
         {
           //-------------------------------------------------------------------
-          if(HTTP_req.indexOf("readT")>-1)
+          if(HTTP_req.indexOf("getWeather")>-1)
           {
-              client.println("HTTP/1.1 200 OK");
-              client.println("Content-Type: text/plain");
-              client.println("Connection: close");
-              client.println();
-              client.println(getTemperature());
-          }
-          else if(HTTP_req.indexOf("readH")>-1)
-          {
+            weatherData[0] = getTemperature();
+            weatherData[1] = getHumidity();
+            weatherData[2] = getLight();
+            weatherData[3] = getWind();
+            weatherData[4] = getRain();
+
             client.println("HTTP/1.1 200 OK");
             client.println("Content-Type: text/plain");
             client.println("Connection: close");
             client.println();
-            client.println(getHumidity());
-          }
-          else if(HTTP_req.indexOf("readL")>-1)
-          {
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-Type: text/plain");
-            client.println("Connection: close");
-            client.println();
-            client.println(getLight());
-          }
-          else if(HTTP_req.indexOf("readR")>-1)
-          {
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-Type: text/plain");
-            client.println("Connection: close");
-            client.println();
-            client.println(getRain());
-          }
-          else if(HTTP_req.indexOf("readW")>-1)
-          {
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-Type: text/plain");
-            client.println("Connection: close");
-            client.println();
-            client.println(getWind());
+            client.print('[');
+            for (int i = 0; i < 5; i++){
+              client.print(weatherData[i]);
+              if (i != 4){
+                client.print(',');
+              }
+            }
+            client.println(']');  
+            
           }
           else if(HTTP_req.indexOf("readGENERAL")>-1)
           {
@@ -118,6 +102,7 @@ void loop()
             client.println("Connection: close");
             client.println();
             client.println(as5600.rawAngle() * AS5600_RAW_TO_DEGREES);
+            //MApDR als
           }
           else if(HTTP_req.indexOf("alignAntennaTo0")>-1)
           {
@@ -125,15 +110,27 @@ void loop()
             client.println("Content-Type: text/plain");
             client.println("Connection: close");
             client.println();
+
+            bool isAligned = false;
+            int isClockwise = 1; //1 = counter clock-wise, -1 = clok-wise
             int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
             mount.setSpeed(100);
-            while (currentPos != 0)
-            {
-              mount.step(50);
-              delay(100);
-              currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+            if(currentPos > 180){
+              isClockwise = -1;
             }
+            while (!isAligned){   //UNSTABLE
+                if(currentPos == 0){
+                  isAligned = true;   
+                } else{
+                  mount.step(isClockwise * 20);
+                  delay(150);
+                  Serial.println(currentPos);
+                  currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+                }
+              }
             client.println("Antenna algned.");
+            isAligned = false;
+            isClockwise = 1;
           }
           else if(HTTP_req.indexOf("pswReq")>-1)
           {
@@ -180,30 +177,18 @@ void loop()
               }
               break;
             }
-            
-            startPoint = alignCmmd.indexOf('/');
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-            
-            from_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
+            Serial.println(alignCmmd);
+            /*
+            char *str[] = alignCmmd; //ERROR
+            char *token = strtok(str, "/");
 
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
-            to_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
-
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
-            for_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
-
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
-            after_value = (int)alignCmmd.substr(startPoint + 1, endPoint - (startPoint +  1));
-
-            startPoint = endPoint;
-            endPoint = alignCmmd.indexOf('/', startPoint + 1);
-
+            int j = 0;
+            while (token != NULL) {
+              dataArray[j] = atoi(token);
+              token = strtok(NULL, "/");
+              j++;
+            }
+            */
             // ^ Unstable?
 
             Serial.println(from_value);
@@ -264,17 +249,17 @@ float getHumidity(){
   return  H;
 }
 
-int getLight(){  //To format raw input 
+float getLight(){
   int LL = analogRead(PHOTOPIN);
   return  LL;
 }
 
-int getRain(){  //To format raw input 
+float getRain(){ 
   int RL = analogRead(RAINPIN);
   return  RL;
 }
 
-float getWind(){  //To format raw input 
+float getWind(){
   int WS = analogRead(ANEMOPIN);
   return  WS;
 }

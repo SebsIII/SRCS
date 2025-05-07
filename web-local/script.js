@@ -1,4 +1,3 @@
-
 //SETUP
 const main = document.querySelector("main")
 const popup_wrapper = document.getElementById("popup-wrapper")
@@ -80,8 +79,7 @@ popup_btn.addEventListener("click", async () => {
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            const output = await ReqMaker(`pswReq/${psw}`)
-            //const output = "true"
+            let output = String(await ReqMaker(`pswReq/${psw}`)).trim()
             if (output == "true"){
                 if(selectedCmmd == "align-antenna-btn"){
                     popup_div.style.display = "none"
@@ -97,9 +95,9 @@ popup_btn.addEventListener("click", async () => {
                     showLoading()
                 }
                 
-                
             }
             else{
+                alert("Password not correct, redirecting to index.htm");
                 location.href = ""
             }
         }
@@ -153,6 +151,91 @@ async function ReqMaker(request){
         return SRCSRequest.responseText;
     }
 }
+function getTemperature()
+{
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        document.getElementById("temperature-var").innerHTML = this.responseText;
+    }
+    };
+    SRCSRequest.open("GET", "readT", true);
+    SRCSRequest.send();
+}
+
+function getHumidity()
+{
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        document.getElementById("humidity-var").innerHTML = this.responseText;
+    }
+    };
+    SRCSRequest.open("GET", "readH", true);
+    SRCSRequest.send();
+}
+
+function getLight(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        light_RAW_var.innerHTML = this.responseText
+        document.getElementById("light-var").innerHTML = this.responseText;
+    }
+    };
+    SRCSRequest.open("GET", "readL", true);
+    SRCSRequest.send();
+}
+
+function getRain(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        rain_RAW_var.innerHTML = this.responseText
+        let value = this.responseText, valueString
+        rain_var.style.color = ""
+
+        if (value >= 1020){
+            valueString = "Clear sky";
+        } else if(value >= 800 && value < 1020){
+            valueString = "Some droplets";
+        } else if(value >= 600 && value < 800){
+            valueString = "It's raining";
+        } else if(value >= 50 && value < 600){
+            valueString = "Heavy raining";
+        } else if(value >= 0 && value < 50){
+            valueString = "Metal on sensor";
+            rain_var.style.color = "red"
+        }
+
+        rain_var.innerHTML =  valueString;
+    }
+    };
+    SRCSRequest.open("GET", "readR", true);
+    SRCSRequest.send();
+}
+
+function getWind(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        wind_RAW_var.innerHTML = this.responseText
+        document.getElementById("wind-var").innerHTML = this.responseText;
+    }
+    };
+    SRCSRequest.open("GET", "readW", true);
+    SRCSRequest.send();
+}
 
 function getWeather(){
     var SRCSRequest = new XMLHttpRequest();
@@ -161,7 +244,7 @@ function getWeather(){
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
         //expected input = "[1.00,2.00,3.00,4.00,5.00]"
-        weatherData = this.responseText.substring(1,this.responseText.length-2).split(",") 
+        weatherData = this.responseText.substring(1,this.responseText.length-3).split(",")
 
         document.getElementById("temperature-var").innerHTML = weatherData[0];
         document.getElementById("humidity-var").innerHTML = weatherData[1];
@@ -220,7 +303,7 @@ function getGeneral(){
         antenna_animation.style.transform = `rotate(${Number(angle)}deg)`
     }
     };
-    SRCSRequest.open("GET", "readGENERAL", true);   
+    SRCSRequest.open("GET", "readGENERAL", true);
     SRCSRequest.send();
 }
 
@@ -228,12 +311,10 @@ function alignAntennaTo0(){
     var SRCSRequest = new XMLHttpRequest();
     SRCSRequest.onreadystatechange = function()
     {
-        if(this.readyState == 3 && this.status == 200){   // <-- 2 means "header received", 3 "loading", which one's better?
-            console.log("req sent and received.")
-        }
-        else if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+        if(this.readyState == 4 && this.status == 200 && this.responseText != null)
         {
-            console.log("Antenna aligned to N.")
+            alert("Antenna aligned to N.")
+            location.href = ""
         }
     };
     SRCSRequest.open("GET", "alignAntennaTo0", true); 
