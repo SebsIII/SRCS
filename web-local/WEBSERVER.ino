@@ -165,8 +165,9 @@ void loop()
               }
               break;
             }
-            
-            char str[] = alignCmmd; //ERROR
+            Serial.println(alignCmmd);
+            /*
+            char *str[] = alignCmmd; //ERROR
             char *token = strtok(str, "/");
 
             int j = 0;
@@ -175,7 +176,7 @@ void loop()
               token = strtok(NULL, "/");
               j++;
             }
-
+            */
             // ^ Unstable?
 
             Serial.println(from_value);
