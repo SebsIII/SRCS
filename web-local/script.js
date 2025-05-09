@@ -125,6 +125,7 @@ send_cmmd_btn.addEventListener("click",async () => {
         }
         else{
             console.log(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`) // delete that after testing
+            // ->  /359/360/1200/1000 biggest alignCmmd, do not overflow
             let output = await ReqMaker(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`)
             //manage output
             align_popup_div.style.display = "none"
@@ -313,6 +314,7 @@ function alignAntennaTo0(){
     {
         if(this.readyState == 4 && this.status == 200 && this.responseText != null)
         {
+            //Antenna-algned,isClockwise:-1
             alert("Antenna aligned to N.")
             location.href = ""
         }

@@ -30,8 +30,9 @@ File HMTL_file, pswLog_file;
 String psw, pswAttempt, alignCmmd;
 int align_from = -1, align_to = -1, align_for =-1, align_after = -1, from_value, to_value, for_value, after_value ;
 int startPoint, endPoint;
-int dataArray[4];
+int dataArray[4], jobTime;
 float weatherData[5];
+bool haveJob = false;
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -51,7 +52,7 @@ void setup()
   
   pswLog_file = SD.open("psw.txt");
   while (pswLog_file.available()){
-    psw += (char)pswLog_file.read()  ;
+    psw += (char)pswLog_file.read();
   }
 
 }
@@ -66,6 +67,7 @@ void loop()
     boolean currentLineIsBlank = true;
     while (client.connected())
     {
+      if((millis()/1000)%5 == 1) checkAndExecJob();
       if(client.available())
       { 
         char c = client.read();
@@ -114,21 +116,25 @@ void loop()
             bool isAligned = false;
             int isClockwise = 1; //1 = counter clock-wise, -1 = clok-wise
             int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
-            mount.setSpeed(100);
+            mount.setSpeed(20); //adjust if too much
             if(currentPos > 180){
               isClockwise = -1;
             }
-            while (!isAligned){   //UNSTABLE
+            while (!isAligned){  
                 if(currentPos == 0){
                   isAligned = true;   
                 } else{
-                  mount.step(isClockwise * 20);
-                  delay(150);
-                  Serial.println(currentPos);
+                  mount.step(isClockwise * 30);
+                  delay(1000);
+                  Serial.print(as5600.rawAngle());    //DEL
+                  Serial.print(" - ");    //DEL
+                  Serial.println(currentPos);   //DEL
                   currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
                 }
+                Serial.println(isAligned);    //DEL
               }
-            client.println("Antenna algned.");
+            client.print("Antenna-algned,isClockwise:");
+            client.println(isClockwise);
             isAligned = false;
             isClockwise = 1;
           }
@@ -171,16 +177,20 @@ void loop()
           {
             Serial.println("Antenna align requested.");
 
-            for (int i = HTTP_req.indexOf("alignCmmd"); i < HTTP_req.length(); i++){
-              while(HTTP_req[i] != ' '){
+            for (int i = HTTP_req.indexOf("alignCmmd") + 9; i < HTTP_req.length(); i++){
+              if(HTTP_req[i] != ' '){
                 alignCmmd += HTTP_req[i];
+              }else{
+                break;
               }
-              break;
             }
-            Serial.println(alignCmmd);
-            /*
-            char *str[] = alignCmmd; //ERROR
-            char *token = strtok(str, "/");
+            haveJob = true;
+            jobTime = millis() + dataArray[3]*1000;
+            Serial.println(jobTime);
+          
+            char buffer[30];
+            alignCmmd.toCharArray(buffer, 30);
+            char *token = strtok(buffer, "/");
 
             int j = 0;
             while (token != NULL) {
@@ -188,20 +198,22 @@ void loop()
               token = strtok(NULL, "/");
               j++;
             }
-            */
+            
             // ^ Unstable?
-
-            Serial.println(from_value);
-            Serial.println(to_value);
-            Serial.println(for_value);
-            Serial.println(after_value);
+  
+            for(int i = 0; i < 4;i++){
+              Serial.println(dataArray[i]);
+            }
 
 
             client.println("HTTP/1.1 200 OK");
             client.println("Content-Type: text/plain");
             client.println("Connection: close");
             client.println();
+            client.println("test concluded.");
             
+            memset(buffer, 0, sizeof(buffer));
+            alignCmmd = "";
             //print something that comunicates the reception, then process cmmd
             
           }
@@ -262,6 +274,14 @@ float getRain(){
 float getWind(){
   int WS = analogRead(ANEMOPIN);
   return  WS;
+}
+
+void checkAndExecJob(){
+  int currentTime = millis();
+  Serial.println(currentTime);
+  if(haveJob == true && currentTime >= jobTime){
+    Serial.println("work now.");
+  }
 }
 
 bool POST(){
