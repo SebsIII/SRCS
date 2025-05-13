@@ -36,7 +36,7 @@ const POST_var = document.getElementById("POST-var")
 const rain_var = document.getElementById("rain-var")
 
 POST_var.innerText = "true"
-AD_var.innerHTML = "counter-clockwise"
+AD_var.innerHTML = "counter clock-wise"
 
 //VARS
 var selectedCmmd;
@@ -52,13 +52,13 @@ setInterval(function()
     getWind();
     getRain();
 }, 2000);
-*/
+
 
 setInterval(() => {
     getGeneral();
     getWeather();
 }, 2000)
-
+*/
 
 setup_btns.forEach((btn) => {
     btn.addEventListener("click",() => {
@@ -79,7 +79,8 @@ popup_btn.addEventListener("click", async () => {
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            let output = String(await ReqMaker(`pswReq/${psw}`)).trim()
+            //let output = String(await ReqMaker(`pswReq/${psw}`)).trim()
+            let output = "true"
             if (output == "true"){
                 if(selectedCmmd == "align-antenna-btn"){
                     popup_div.style.display = "none"
@@ -119,14 +120,16 @@ send_cmmd_btn.addEventListener("click",async () => {
             alert("error: for_value = 0")
             location.href = ""
         }
-        else if(from_value.toString().length > 3 || to_value.toString().length > 3 || from_value > 360 || to_value > 360 || for_value == 0){
+        else if(from_value.toString().length > 3 || to_value.toString().length > 3 || from_value > 360 || to_value > 360 || for_value == 0 || for_value > 9999 || after_value > 9999){
             alert("error: invalid inputs")
             location.href = ""
         }
-        else{
+        else {
+            // ->  /359/360/9999/9999 biggest alignCmmd, do not overflow
             console.log(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`) // delete that after testing
-            // ->  /359/360/1200/1000 biggest alignCmmd, do not overflow
             let output = await ReqMaker(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`)
+            
+            
             //manage output
             align_popup_div.style.display = "none"
             showLoading()
@@ -151,91 +154,6 @@ async function ReqMaker(request){
     if (SRCSRequest.status === 200 && SRCSRequest.responseText !== null) {
         return SRCSRequest.responseText;
     }
-}
-function getTemperature()
-{
-    var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        document.getElementById("temperature-var").innerHTML = this.responseText;
-    }
-    };
-    SRCSRequest.open("GET", "readT", true);
-    SRCSRequest.send();
-}
-
-function getHumidity()
-{
-    var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        document.getElementById("humidity-var").innerHTML = this.responseText;
-    }
-    };
-    SRCSRequest.open("GET", "readH", true);
-    SRCSRequest.send();
-}
-
-function getLight(){
-    var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        light_RAW_var.innerHTML = this.responseText
-        document.getElementById("light-var").innerHTML = this.responseText;
-    }
-    };
-    SRCSRequest.open("GET", "readL", true);
-    SRCSRequest.send();
-}
-
-function getRain(){
-    var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        rain_RAW_var.innerHTML = this.responseText
-        let value = this.responseText, valueString
-        rain_var.style.color = ""
-
-        if (value >= 1020){
-            valueString = "Clear sky";
-        } else if(value >= 800 && value < 1020){
-            valueString = "Some droplets";
-        } else if(value >= 600 && value < 800){
-            valueString = "It's raining";
-        } else if(value >= 50 && value < 600){
-            valueString = "Heavy raining";
-        } else if(value >= 0 && value < 50){
-            valueString = "Metal on sensor";
-            rain_var.style.color = "red"
-        }
-
-        rain_var.innerHTML =  valueString;
-    }
-    };
-    SRCSRequest.open("GET", "readR", true);
-    SRCSRequest.send();
-}
-
-function getWind(){
-    var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        wind_RAW_var.innerHTML = this.responseText
-        document.getElementById("wind-var").innerHTML = this.responseText;
-    }
-    };
-    SRCSRequest.open("GET", "readW", true);
-    SRCSRequest.send();
 }
 
 function getWeather(){
@@ -280,19 +198,6 @@ function getWeather(){
     SRCSRequest.send();
 }
 
-function getSRCS(){
-    var SRCSRequest = new XMLHttpRequest();
-    SRCSRequest.onreadystatechange = function()
-    {
-    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
-    {
-        document.getElementById("POST-var").innerHTML = this.responseText;
-    }
-    };
-    SRCSRequest.open("GET", "readSRCS", true);
-    SRCSRequest.send();
-}
-
 function getGeneral(){
     var SRCSRequest = new XMLHttpRequest();
     SRCSRequest.onreadystatechange = function()
@@ -316,7 +221,18 @@ function alignAntennaTo0(){
         {
             //Antenna-algned,isClockwise:-1
             alert("Antenna aligned to N.")
-            location.href = ""
+            hideLoading()
+            let isClockwise = this.responseText.split(":")
+            if(isClockwise[1].trim() == "1"){
+                AD_var.innerHTML = "counter clock-wise"
+            }
+            else if(isClockwise[1].trim() == "-1"){
+                AD_var.innerHTML = "clock-wise"
+            } else
+            {
+                console.error(isClockwise, " error isClockwise")
+            }
+
         }
     };
     SRCSRequest.open("GET", "alignAntennaTo0", true); 
@@ -330,4 +246,12 @@ function showLoading(){
     setTimeout(() => {
         loading_popup_div.style.opacity = "100%"
     }, 30)
+}
+
+function hideLoading(){
+    loading_popup_div.style.opacity = "0%"
+    setTimeout(() => {
+        loading_popup_div.style.display = "none"
+    }, 30)
+    popup_wrapper.style.cursor = "default"
 }

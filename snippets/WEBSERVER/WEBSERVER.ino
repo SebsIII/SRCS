@@ -33,6 +33,7 @@ int startPoint, endPoint;
 int dataArray[4], jobTime;
 float weatherData[5];
 bool haveJob = false;
+int unsigned long realTime, lastTrigger = 0;
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -67,7 +68,12 @@ void loop()
     boolean currentLineIsBlank = true;
     while (client.connected())
     {
-      if((millis()/1000)%5 == 1) checkAndExecJob();
+      realTime = millis()/1000;
+      if(realTime%5 == 0 && realTime != lastTrigger){
+        lastTrigger = realTime;
+        checkAndExecJob();
+      }
+      
       if(client.available())
       { 
         char c = client.read();
