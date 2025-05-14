@@ -29,6 +29,7 @@
                 <p class="data">AD = <a id="AD-var">N/A</a></p>
                 <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
                 <p class="data">MRC = <a id="MRC-var">N/A</a></p>
+                <p class="data">HasJob = <a id="JOB-var">N/A</a></p>
             </div>
             <div id="weather-data-div" class="info-div">
                 <p id="weather-data-title" onclick="updateWeather()">Weather RAW</p>
@@ -77,19 +78,19 @@
             <div id="align-popup-item-formatter">
                 <div class="item-popup-formatter">
                     <p>Align from:</p>
-                    <input type="number" placeholder=" °" class="popup-inputs" id="from-input">
+                    <input type="number" placeholder=" ° (0-360)" class="popup-inputs" id="from-input">
                 </div>
                 <div class="item-popup-formatter">
                     <p>To: </p>
-                    <input type="number" placeholder=" °" class="popup-inputs" id="to-input">
+                    <input type="number" placeholder=" ° (0-360)" class="popup-inputs" id="to-input">
                 </div>
                 <div class="item-popup-formatter">
                     <p>For: </p>
-                    <input type="number" placeholder=" s" class="popup-inputs" id="for-input">
+                    <input type="number" placeholder=" s (<9999)" class="popup-inputs" id="for-input">
                 </div>
                 <div class="item-popup-formatter">
                     <p>After: </p>
-                    <input type="number" placeholder=" s" class="popup-inputs" id="after-input">
+                    <input type="number" placeholder=" s (<9999)" class="popup-inputs" id="after-input">
                 </div>
                 <button id="send-cmmd-btn">send</button>
             </div>

@@ -207,6 +207,7 @@ function getGeneral(){
         var angle = this.responseText
         AA_var.innerHTML = angle
         antenna_animation.style.transform = `rotate(${Number(angle)}deg)`
+        //isClockwise, hasJob
     }
     };
     SRCSRequest.open("GET", "readGENERAL", true);
