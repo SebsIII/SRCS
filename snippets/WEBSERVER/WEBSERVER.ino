@@ -30,10 +30,10 @@ File HMTL_file, pswLog_file;
 String psw, pswAttempt, alignCmmd;
 int align_from = -1, align_to = -1, align_for =-1, align_after = -1, from_value, to_value, for_value, after_value ;
 int startPoint, endPoint;
-int dataArray[4], jobTime;
+int dataArray[4];
 float weatherData[5];
 bool haveJob = false;
-int unsigned long instantTime, lastTrigger = 0;
+unsigned long instantTime, lastTrigger = 0, jobTime;
 int isClockwise = 1; //1 = counter clock-wise, -1 = clok-wise
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
@@ -70,7 +70,7 @@ void loop()
     while (client.connected())
     {
       instantTime = millis()/1000;
-      if(instantTime%5 == 0 && instantTime != lastTrigger){
+      if(instantTime%1 == 0 && instantTime != lastTrigger){
         lastTrigger = instantTime;
         checkAndExecJob();
       }
@@ -120,28 +120,9 @@ void loop()
             client.println("Connection: close");
             client.println();
 
-            bool isAligned = false;
-            int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
-            mount.setSpeed(20); //adjust if too much
-            if(currentPos > 180){
-              isClockwise = -1;
-            }
-            while (!isAligned){  
-                if(currentPos == 0){
-                  isAligned = true;   
-                } else{
-                  mount.step(isClockwise * 30);
-                  delay(1000);
-                  Serial.print(as5600.rawAngle());    //DEL
-                  Serial.print(" - ");    //DEL
-                  Serial.println(currentPos);   //DEL
-                  currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
-                }
-                Serial.println(isAligned);    //DEL
-              }
+            alignTo(0);
             client.print("Antenna-algned,isClockwise:");
             client.println(isClockwise);
-            isAligned = false;
             isClockwise = 1;
           }
           else if(HTTP_req.indexOf("pswReq")>-1)
@@ -190,10 +171,7 @@ void loop()
                 break;
               }
             }
-            haveJob = true;
-            jobTime = millis() + dataArray[3]*1000;
-            Serial.println(jobTime);
-          
+            
             char buffer[30];
             alignCmmd.toCharArray(buffer, 30);
             char *token = strtok(buffer, "/");
@@ -204,6 +182,19 @@ void loop()
               token = strtok(NULL, "/");
               j++;
             }
+
+            for(int i = 0; i < 4; i++){
+              Serial.println(dataArray[i]);
+            }
+            Serial.println("-----");
+
+            haveJob = true;
+            Serial.print(dataArray[3]);
+            jobTime = millis() + (dataArray[3] * 1000UL);
+            Serial.print("Job time is: ");
+            Serial.print(jobTime);
+            Serial.print(" - ");
+            Serial.println(millis());
   
 
 
@@ -243,6 +234,8 @@ void loop()
     }
     delay(10);
     client.stop();
+    //haveJob = false;
+    //Serial.println("Client quitted - all jobs aborted.");
   }
 }
 
@@ -287,36 +280,67 @@ void checkAndExecJob(){
     if (currentTime >= jobTime)
     {
       Serial.println("The time has come.");
-      if(isAligned){
+      int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+      if(currentPos <= dataArray[0]+1 || currentPos >= dataArray[0]-1){
         //start reception
-      } else{
-        //align
+        /*
+        angle/time = angle/s;
+        i can make a function that rotates of a degree and use a delay to move at the right time?
+        */
+
+        float currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+        int targetAz = dataArray[1];
+        mount.setSpeed(80);
+        mount.step(-40.63);
+        float newPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+        Serial.print("degree per 10 steps: ");
+        Serial.println(newPos-currentPos);
+        Serial.print("steps per degree: ");
+        Serial.println(1/((newPos-currentPos)/50));
+
+
+      } else {
+        Serial.println("Antenna is not aligned.");
       }
     
    }
     else if ((jobTime-currentTime)/1000 <= 60)
     {
       Serial.println("T-60, aligning antenna.");
-      int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
-      int startAz = (int)dataArray[0];
-
-      while (!isAligned){  
-        if(currentPos == startAz){
-          isAligned = true;   
-        } else{
-          mount.step(isClockwise * 30);
-          delay(1000);
-          Serial.print(as5600.rawAngle());    //DEL
-          Serial.print(" - ");    //DEL
-          Serial.println(currentPos);   //DEL
-          currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
-        }
-        Serial.println(isAligned);    //DEL
+      if(alignTo(dataArray[0])){
+        isAligned = true;
+        Serial.print("aligned to: ");
+        Serial.println(dataArray[0]);
+      } else {
+        Serial.println("error during aligning session.");
       }
+      
     }
-    
-    
   }
+}
+
+bool alignTo(int targetAz){
+  bool isAligned = false;
+  int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+  mount.setSpeed(80); //adjust if too much
+  if(currentPos > 180){
+    isClockwise = -1;
+  }
+  while (!isAligned){  
+    if(currentPos == targetAz){
+      isAligned = true;   
+    } else{
+      mount.step(isClockwise * 30);
+      delay(50);
+      Serial.print(as5600.rawAngle());    //DEL
+      Serial.print(" - ");    //DEL
+      Serial.println(currentPos);   //DEL
+      currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+    }
+    Serial.println(isAligned);    //DEL
+  }
+  isAligned = false;
+  return true;
 }
 
 bool POST(){

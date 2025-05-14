@@ -42,23 +42,10 @@ AD_var.innerHTML = "counter clock-wise"
 var selectedCmmd;
 let weatherData;
 
-/*              keep it hidden
-setInterval(function()
-{
-    getGeneral();
-    getTemperature();
-    getHumidity();
-    getLight();
-    getWind();
-    getRain();
-}, 2000);
-
-
 setInterval(() => {
     getGeneral();
     getWeather();
 }, 2000)
-*/
 
 setup_btns.forEach((btn) => {
     btn.addEventListener("click",() => {
@@ -233,7 +220,7 @@ function alignAntennaTo0(){
             {
                 console.error(isClockwise, " error isClockwise")
             }
-
+            hideLoading()
         }
     };
     SRCSRequest.open("GET", "alignAntennaTo0", true); 
@@ -254,5 +241,6 @@ function hideLoading(){
     setTimeout(() => {
         loading_popup_div.style.display = "none"
     }, 30)
+    popup_wrapper.style.display = "none"
     popup_wrapper.style.cursor = "default"
 }
