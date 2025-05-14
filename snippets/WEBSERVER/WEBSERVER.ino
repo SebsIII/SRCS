@@ -33,7 +33,8 @@ int startPoint, endPoint;
 int dataArray[4], jobTime;
 float weatherData[5];
 bool haveJob = false;
-int unsigned long realTime, lastTrigger = 0;
+int unsigned long instantTime, lastTrigger = 0;
+int isClockwise = 1; //1 = counter clock-wise, -1 = clok-wise
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
@@ -68,9 +69,9 @@ void loop()
     boolean currentLineIsBlank = true;
     while (client.connected())
     {
-      realTime = millis()/1000;
-      if(realTime%5 == 0 && realTime != lastTrigger){
-        lastTrigger = realTime;
+      instantTime = millis()/1000;
+      if(instantTime%5 == 0 && instantTime != lastTrigger){
+        lastTrigger = instantTime;
         checkAndExecJob();
       }
       
@@ -120,7 +121,6 @@ void loop()
             client.println();
 
             bool isAligned = false;
-            int isClockwise = 1; //1 = counter clock-wise, -1 = clok-wise
             int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
             mount.setSpeed(20); //adjust if too much
             if(currentPos > 180){
@@ -204,12 +204,7 @@ void loop()
               token = strtok(NULL, "/");
               j++;
             }
-            
-            // ^ Unstable?
   
-            for(int i = 0; i < 4;i++){
-              Serial.println(dataArray[i]);
-            }
 
 
             client.println("HTTP/1.1 200 OK");
@@ -285,8 +280,42 @@ float getWind(){
 void checkAndExecJob(){
   int currentTime = millis();
   Serial.println(currentTime);
-  if(haveJob == true && currentTime >= jobTime){
-    Serial.println("work now.");
+  if (haveJob == true)
+  {
+    bool isAligned = false;
+    Serial.println("There's a job active.");
+    if (currentTime >= jobTime)
+    {
+      Serial.println("The time has come.");
+      if(isAligned){
+        //start reception
+      } else{
+        //align
+      }
+    
+   }
+    else if ((jobTime-currentTime)/1000 <= 60)
+    {
+      Serial.println("T-60, aligning antenna.");
+      int currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+      int startAz = (int)dataArray[0];
+
+      while (!isAligned){  
+        if(currentPos == startAz){
+          isAligned = true;   
+        } else{
+          mount.step(isClockwise * 30);
+          delay(1000);
+          Serial.print(as5600.rawAngle());    //DEL
+          Serial.print(" - ");    //DEL
+          Serial.println(currentPos);   //DEL
+          currentPos = as5600.rawAngle() * AS5600_RAW_TO_DEGREES;
+        }
+        Serial.println(isAligned);    //DEL
+      }
+    }
+    
+    
   }
 }
 
