@@ -186,7 +186,7 @@ footer{
 .info-div{
     min-width: 15vw;
     height: fit-content;
-    margin: 0px;
+    margin: 8px;
     font-size: 20px;
 }
 
@@ -223,7 +223,7 @@ footer{
 }
 
 #SRCS-data-div{
-    margin: 32px;
+    margin: 40px;
 }
 
 

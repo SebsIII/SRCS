@@ -24,15 +24,15 @@
         <p id="main-title">Reception tab</p>
         <div id="GN-formatter">
             <div id="general-data-div" class="info-div">
-                <p id="general-title" onclick="getGeneral()">General</p>
+                <p id="general-title">General</p>
                 <p class="data">AA = <a id="AA-var">N/A</a></p>
                 <p class="data">AD = <a id="AD-var">N/A</a></p>
                 <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
                 <p class="data">MRC = <a id="MRC-var">N/A</a></p>
-                <p class="data">HasJob = <a id="JOB-var">N/A</a></p>
+                <p class="data">HaveJob = <a id="JOB-var">N/A</a></p>
             </div>
             <div id="weather-data-div" class="info-div">
-                <p id="weather-data-title" onclick="updateWeather()">Weather RAW</p>
+                <p id="weather-data-title" >Weather RAW</p>
                 <p class="data">Light = <a id="light-RAW-var">N/A</a></p>
                 <p class="data">Rain = <a id="rain-RAW-var">N/A</a></p>
                 <p class="data">Wind = <a id="wind-RAW-var">N/A</a></p>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div id="SRCS-data-div" class="info-div">
-            <p id="SRCS-div-title" onclick="getSRCS()">SRCS</p>
+            <p id="SRCS-div-title">SRCS</p>
             <p class="data">POST = <a id="POST-var">N/A</a></p>
         </div>
         <div id="weather-div">
@@ -99,6 +99,7 @@
             <h1 class="loading-popup-class">The login was <b class="success">successful</b>.</h1>
             <p class="popup-subtitle-class">This action is going to be processed, the page will automatically refresh once completed.</p>
             <p id="loading-popup-warning">DO NOT REFRESH THE PAGE AND/OR SEND OTHER HTTP REQUESTS WHILE YOU SEE THIS POPUP.</p>
+            <button onclick="hideLoading()">TEST</button>
         </div>
     </div>  
     <footer>

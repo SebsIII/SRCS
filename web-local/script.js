@@ -34,6 +34,7 @@ const AD_var = document.getElementById("AD-var")
 const POST_var = document.getElementById("POST-var")
 
 const rain_var = document.getElementById("rain-var")
+const haveJob = document.getElementById("JOB-var")
 
 POST_var.innerText = "true"
 AD_var.innerHTML = "counter clock-wise"
@@ -66,8 +67,8 @@ popup_btn.addEventListener("click", async () => {
             console.log(selectedCmmd)
             console.log(popup_psw.value)
             popup_psw.value = ""
-            //let output = String(await ReqMaker(`pswReq/${psw}`)).trim()
-            let output = "true"
+            let output = String(await ReqMaker(`pswReq/${psw}`)).trim()
+            //let output = "true"
             if (output == "true"){
                 if(selectedCmmd == "align-antenna-btn"){
                     popup_div.style.display = "none"
@@ -191,10 +192,24 @@ function getGeneral(){
     {
     if(this.readyState == 4 && this.status == 200 && this.responseText != null)
     {
-        var angle = this.responseText
-        AA_var.innerHTML = angle
-        antenna_animation.style.transform = `rotate(${Number(angle)}deg)`
-        //isClockwise, hasJob
+        //Expected input "100.23,false,1"
+        var data = this.responseText.trim()
+        data = data.split(",")
+
+        AA_var.innerHTML = data[0]
+        antenna_animation.style.transform = `rotate(${Number(data[0])}deg)`
+
+        if(Number(data[2]) == 1){
+            AD_var.innerHTML = "counter clock-wise"
+        } else if (Number(data[2]) == -1){
+            AD_var.innerHTML = "clockwise"
+        } else{
+            alert(isClockwise)
+        }
+
+        haveJob.innerHTML = data[1]
+
+
     }
     };
     SRCSRequest.open("GET", "readGENERAL", true);

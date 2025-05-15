@@ -110,7 +110,11 @@ void loop()
             client.println("Content-Type: text/plain");
             client.println("Connection: close");
             client.println();
-            client.println(as5600.rawAngle() * AS5600_RAW_TO_DEGREES);
+            client.print(as5600.rawAngle() * AS5600_RAW_TO_DEGREES);
+            client.print(",");
+            client.print(haveJob);
+            client.print(",");
+            client.println(isClockwise);
             //MApDR als
           }
           else if(HTTP_req.indexOf("alignAntennaTo0")>-1)

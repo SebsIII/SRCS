@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Oswald:wght@200..700&family=Questrial&display=swap" rel="stylesheet">
+
+    <title>SRCS Dashboard</title>
+</head>
+<style>
+    .success{
+    color: #60d421;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+    color: white;
+    background-color: #0B0B0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Questrial;
+}
+
+main{
+    width: 90vw;
+    height: 85vh;
+    background: linear-gradient(to right, rgba(166, 166, 166,0.7), rgba(255, 255, 255,0.7));
+    border-radius: 16px;
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+header{
+    margin: 0px;
+    display: flex;
+    width: 100vw;
+    height: 7.5vh;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: baseline;
+    padding-left: 20vw;
+}
+
+#SRCS-title{
+    font-size: 24px;
+    font-family: Oswald;
+    transition: all 0.3s;
+}
+#SRCS-title:hover{
+    cursor: pointer;
+    transform: scale(110%);
+}
+
+#SRCS-subtitle{
+    font-size: 22px;
+    font-family: Oswald;
+    color: #9D4EDD;
+    margin-left: 4px;
+}
+
+footer{
+    margin: 0px;
+    display: flex;
+    width: 100vw;
+    height: 7.5vh;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items:center;
+    justify-content: right;
+    padding-right: 15vw;
+}
+
+#signature{
+    font-family: Allura;
+    font-size: 26px;
+    transition: all 0.3s;
+}
+#signature:hover{
+    cursor: pointer;
+    transform: scale(110%);
+    color: #9D4EDD;
+}
+
+#main-title{
+    margin: 8px 0px 0px 5%;
+    font-size: 24px;
+}
+
+#weather-div{
+    width: 20vw;
+    height: 45vh;
+    background-color: #9D4EDD;
+    border-radius: 16px;
+    position: absolute;
+    right: 6.5vw;
+    top: 10.5vh;
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#align-antenna-btn{
+    width: 15vw;
+    height: 8vh;
+    color: white;
+    background-color: #9D4EDD;
+    border: none;
+    border-radius: 16px;
+    font-family: Oswald;
+    font-size: 20px;
+    transition: all 0.3s;
+    margin: 0px 16px 0px 0px;
+}
+
+#align-north-btn{
+    width: 8vw;
+    height: 6vh;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 16px;
+    transition: all 0.3s;
+    background-color: #c3ae2a;
+    font-family: Oswald;
+    font-size: 16px;
+}
+
+.setup-btns:hover{
+    cursor: pointer;
+    transform: scale(105%);
+    filter: brightness(95%);
+}
+
+
+#setup-div{
+    width: fit-content;
+    min-height: 8vh;
+    margin: 0px;
+    position: absolute;
+    bottom: 10vh;
+    left: 6.5vw;    
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+#status-div{
+    background-color: white;
+    width: 80%;
+    height: 2vh;
+    border-radius: 16px;
+    position: absolute;
+    right: 2vw;
+    top: 90%;
+}
+
+.black{
+    color: #0b0b0b;
+}
+
+#weather-title{
+    font-size: 22px;
+    margin: 4px;
+}
+
+#temperature-wrapper{
+    margin: 16px 0px;
+}
+
+#temperature-var{
+    font-size: 72px;
+}
+
+#humidity-wrapper{
+    margin: 0px;
+}
+
+#humidity-var{
+    font-size: 32px;
+}
+
+#GN-formatter{
+    display: flex;
+    margin: 32px;
+}
+
+.info-div{
+    min-width: 15vw;
+    height: fit-content;
+    margin: 0px;
+    font-size: 20px;
+}
+
+#general-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#general-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+#weather-data-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#weather-data-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+.data{
+    margin: 4px;
+}
+
+#SRCS-data-div{
+    margin: 32px;
+}
+
+
+#SRCS-div-title{
+    margin: 8px;
+    font-family: Oswald;
+    font-size: 28px;
+    color: #0B0B0B;
+    transition: all 0.3s;
+    width: fit-content;
+}
+#SRCS-div-title:hover{
+    cursor: pointer;
+    transform: scale(115%);
+    color: #e2c105;
+}
+
+#popup-wrapper{
+    position: absolute;
+    align-self: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.2s;
+    
+}
+
+.popup-class{
+    z-index: 3;
+    display: none;
+    opacity: 0%;
+    z-index: 5;
+    width: 25vw;
+    min-height: 30vh;
+    background-color: #9D4EDD;
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 10px 10px rgba(0,0,0,0.4);
+    transition: all 0.2s;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-subtitle-class{
+    margin: 4px;
+    text-align: center;
+}
+
+.loading-popup-class{
+    margin: 4px;
+    font-family: Oswald;
+    text-align: center;
+}
+
+#loading-popup-subtitle{
+    margin: 8px;
+    text-align: center;
+}
+
+#loading-popup-warning{
+    margin: 16px 8px 8px 8px;
+    text-align: center;
+    font-family: Oswald;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#popup-psw{
+    height: 5vh;
+    width: 60%;
+    margin: 16px 0px;
+    border: none;
+    border-radius: 16px;
+    box-sizing: border-box;
+    padding: 16px
+}
+
+#popup-btn{
+    height: 3vh;
+    width: 30%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#popup-btn:hover{
+    transform: scale(105%);
+    filter: brightness(95%);
+}
+
+#antenna-animation{
+    width: 30%;
+    transition: all 0.7s;
+}
+
+#antenna-animation-div{
+    padding: 0%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    height: fit-content;
+    right: 20vw;
+    top: 12vh;
+}
+
+.item-popup-formatter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: Oswald;
+}
+.popup-inputs{
+    border: none;
+    border-radius: 16px;
+    height: 5vh;
+    width: 35%;
+    margin: 4px;
+    font-family: Questrial;
+    box-sizing: border-box;
+    padding: 16px;
+    font-size: 18px;
+}
+
+#align-popup-item-formatter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#send-cmmd-btn{
+    height: 3vh;
+    width: 30%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 8px;
+}
+#send-cmmd-btn:hover{
+    transform: scale(105%);
+    filter: brightness(95%);
+}
+
+#n2yo-logo{
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+    width: 10vw;
+    align-self: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 4px 0px 0px 0px;
+}
+#n2yo-logo:hover{
+    transform: scale(105%);
+    filter: brightness(95%);
+}
+
+#n2yo-div{
+    position: absolute;
+    right: 6.5vw;
+    top: 57.5vh;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    align-items: center;
+    text-align: center;
+}
+
+#n2yo-p{
+    width: 80%;
+    font-size: 14px;
+}
+</style>
+<body>
+    <header>
+        <p id="SRCS-title" onclick="location.href='index.html'">SRCS</p>
+        <p id="SRCS-subtitle">Dashboard</p>
+    </header>
+    <main>
+        <p id="main-title">Reception tab</p>
+        <div id="GN-formatter">
+            <div id="general-data-div" class="info-div">
+                <p id="general-title" onclick="getGeneral()">General</p>
+                <p class="data">AA = <a id="AA-var">N/A</a></p>
+                <p class="data">AD = <a id="AD-var">N/A</a></p>
+                <p class="data">MApDR = <a id="MApDR-var">N/A</a></p>
+                <p class="data">MRC = <a id="MRC-var">N/A</a></p>
+                <p class="data">HasJob = <a id="JOB-var">N/A</a></p>
+            </div>
+            <div id="weather-data-div" class="info-div">
+                <p id="weather-data-title" onclick="updateWeather()">Weather RAW</p>
+                <p class="data">Light = <a id="light-RAW-var">N/A</a></p>
+                <p class="data">Rain = <a id="rain-RAW-var">N/A</a></p>
+                <p class="data">Wind = <a id="wind-RAW-var">N/A</a></p>
+            </div>
+            
+            <div id="antenna-animation-div">
+                <b>N</b>
+                <img src="https://github.com/SebsIII/SRCS/blob/6e29a0632d3146aea96081d0aedd969c88c578ac/web-local/antenna-animation.png?raw=true" id="antenna-animation">
+            </div>
+        </div>
+        <div id="SRCS-data-div" class="info-div">
+            <p id="SRCS-div-title" onclick="getSRCS()">SRCS</p>
+            <p class="data">POST = <a id="POST-var">N/A</a></p>
+        </div>
+        <div id="weather-div">
+            <p id="weather-title">Current <a class="black">Weather</a></p>
+            <p id="temperature-wrapper" class="black"><a id="temperature-var">N/A</a>C°</p>
+            <p id="humidity-wrapper"><a id="humidity-var">N/A</a>%</p>
+            <p><a id="light-var">N/A</a>lx</p>
+            <p class="black"><a id="wind-var">N/A</a>km/h</p>
+            <p class="black" id="rain-var">N/A</p>
+            <div id="status-div"></div>
+        </div>
+        <div id="setup-div">
+            <button id="align-north-btn" class="setup-btns">Align to N</button>
+            <button id="align-antenna-btn" class="setup-btns">Start Reception session</button>
+        </div>
+        <div id="n2yo-div">
+            <img src="https://www.n2yo.com/img/n2yologo.png" id="n2yo-logo">
+            <p id="n2yo-p">This website is meant to be used along with N2YO.com or similar space-analysis websites.</p>
+        </div>
+    </main>
+    <div id="popup-wrapper">
+        <div class="popup-class" id="popup-div">
+            <h1 class="loading-popup-class">Warning!</h1>
+            <p class="popup-subtitle-class">This action needs a <b>password</b> to continue, insert it in the box below to continue.</p>
+            <input type="password" placeholder="password" id="popup-psw">
+            <button type="submit" id="popup-btn">Send</button>
+        </div>
+        <div class="popup-class" id="align-popup-div">
+            <h1 id="align-popup-title" class="loading-popup-class">The login was <b class="success">successful</b>.</h1>
+            <p class="popup-subtitle-class">Enter the command to send:</p>
+            <div id="align-popup-item-formatter">
+                <div class="item-popup-formatter">
+                    <p>Align from:</p>
+                    <input type="number" placeholder=" ° (0-360)" class="popup-inputs" id="from-input">
+                </div>
+                <div class="item-popup-formatter">
+                    <p>To: </p>
+                    <input type="number" placeholder=" ° (0-360)" class="popup-inputs" id="to-input">
+                </div>
+                <div class="item-popup-formatter">
+                    <p>For: </p>
+                    <input type="number" placeholder=" s (<9999)" class="popup-inputs" id="for-input">
+                </div>
+                <div class="item-popup-formatter">
+                    <p>After: </p>
+                    <input type="number" placeholder=" s (<9999)" class="popup-inputs" id="after-input">
+                </div>
+                <button id="send-cmmd-btn">send</button>
+            </div>
+        </div>
+        <div class="popup-class" id="loading-popup-div">
+            <h1 class="loading-popup-class">The login was <b class="success">successful</b>.</h1>
+            <p class="popup-subtitle-class">This action is going to be processed, the page will automatically refresh once completed.</p>
+            <p id="loading-popup-warning">DO NOT REFRESH THE PAGE AND/OR SEND OTHER HTTP REQUESTS WHILE YOU SEE THIS POPUP.</p>
+        </div>
+    </div>  
+    <footer>
+        <p id="signature" onclick=" location.href='https://github.com/SebsIII'">By Sebs_</p>
+    </footer>
+    <script>
+//SETUP
+const main = document.querySelector("main")
+const popup_wrapper = document.getElementById("popup-wrapper")
+const popup_div = document.getElementById("popup-div")
+const popup_psw = document.getElementById("popup-psw")
+
+const antenna_animation = document.getElementById("antenna-animation")
+
+const loading_popup_div = document.getElementById("loading-popup-div")
+
+const align_popup_wrapper = document.getElementById("align-popup-wrapper")
+const align_popup_div = document.getElementById("align-popup-div")
+
+const from_input = document.getElementById("from-input")
+const to_input = document.getElementById("to-input")
+const for_input = document.getElementById("for-input")
+const after_input = document.getElementById("after-input")
+
+//BTNS
+const align_btn = document.getElementById("align-antenna-btn")
+const popup_btn = document.getElementById("popup-btn") 
+const setup_btns = document.querySelectorAll(".setup-btns")
+const send_cmmd_btn = document.getElementById("send-cmmd-btn")
+const n2yo_btn = document.getElementById("n2yo-logo")
+
+//RAW data
+const light_RAW_var = document.getElementById("light-RAW-var")
+const rain_RAW_var = document.getElementById("rain-RAW-var")
+const wind_RAW_var = document.getElementById("wind-RAW-var")
+
+//GENERAL data
+const AA_var = document.getElementById("AA-var")
+const AD_var = document.getElementById("AD-var")
+const POST_var = document.getElementById("POST-var")
+
+const rain_var = document.getElementById("rain-var")
+
+POST_var.innerText = "true"
+AD_var.innerHTML = "counter clock-wise"
+
+//VARS
+var selectedCmmd;
+let weatherData;
+
+
+setInterval(() => {
+    getGeneral();
+    getWeather();
+}, 2000)
+
+setup_btns.forEach((btn) => {
+    btn.addEventListener("click",() => {
+        selectedCmmd = btn.id
+        popup_wrapper.style.display = "flex"
+        popup_div.style.display = "flex"
+        setTimeout(() => {
+            popup_wrapper.style.backdropFilter = "blur(5px) brightness(90%)" 
+            popup_div.style.opacity = "100%"
+        }, 30)
+    })
+})
+
+popup_btn.addEventListener("click", async () => {
+    var psw = popup_psw.value
+    if(psw){
+        if(selectedCmmd){
+            console.log(selectedCmmd)
+            console.log(popup_psw.value)
+            popup_psw.value = ""
+            //let output = String(await ReqMaker(`pswReq/${psw}`)).trim()
+            let output = "true"
+            if (output == "true"){
+                if(selectedCmmd == "align-antenna-btn"){
+                    popup_div.style.display = "none"
+                    align_popup_div.style.display = "none"    
+                    align_popup_div.style.display = "flex"
+                    setTimeout(() => {
+                        align_popup_div.style.opacity = "100%"
+                    }, 30)
+
+                }
+                else if(selectedCmmd == "align-north-btn"){
+                    alignAntennaTo0() // <-- should continue to run commands after since is async, check though
+                    showLoading()
+                }
+                
+            }
+            else{
+                alert("Password not correct, redirecting to index.htm");
+                location.href = ""
+            }
+        }
+    }
+})
+
+send_cmmd_btn.addEventListener("click",async () => {
+    let from_value = Math.abs(from_input.value)
+    let to_value = Math.abs(to_input.value)
+    let for_value = Math.abs(for_input.value)
+    let after_value = Math.abs(after_input.value)
+
+    if(from_value != "" && to_value != "" && for_value != "" && after_value != ""){
+        if(from_value == to_value){
+            alert("error: from_value = to_value")
+            location.href = ""
+        } 
+        else if(for_value == 0){
+            alert("error: for_value = 0")
+            location.href = ""
+        }
+        else if(from_value.toString().length > 3 || to_value.toString().length > 3 || from_value > 360 || to_value > 360 || for_value == 0 || for_value > 9999 || after_value > 9999){
+            alert("error: invalid inputs")
+            location.href = ""
+        }
+        else {
+            // ->  /359/360/9999/9999 biggest alignCmmd, do not overflow
+            console.log(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`) // delete that after testing
+            let output = await ReqMaker(`alignCmmd/${from_value}/${to_value}/${for_value}/${after_value}`)
+            
+            
+            //manage output
+            align_popup_div.style.display = "none"
+            showLoading()
+            console.log(output)
+        }
+    }
+
+
+
+})
+
+n2yo_btn.addEventListener("click", () => {
+    window.open("https://www.n2yo.com", "_blank")
+})
+
+
+async function ReqMaker(request){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.open("GET", request, false);
+    SRCSRequest.send();
+
+    if (SRCSRequest.status === 200 && SRCSRequest.responseText !== null) {
+        return SRCSRequest.responseText;
+    }
+}
+
+function getWeather(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        //expected input = "[1.00,2.00,3.00,4.00,5.00]"
+        weatherData = this.responseText.substring(1,this.responseText.length-3).split(",")
+
+        document.getElementById("temperature-var").innerHTML = weatherData[0];
+        document.getElementById("humidity-var").innerHTML = weatherData[1];
+
+        light_RAW_var.innerHTML = weatherData[2]    
+        document.getElementById("light-var").innerHTML = weatherData[2];    //format
+
+        wind_RAW_var.innerHTML = weatherData[3]
+        document.getElementById("wind-var").innerHTML = weatherData[3];     //format 
+
+        let value = weatherData[4]
+        rain_RAW_var.innerHTML = value
+        rain_var.style.color = ""
+
+        if (value >= 1020){
+            rain_var.innerHTML = "Clear sky";
+        } else if(value >= 800 && value < 1020){
+            rain_var.innerHTML = "Some droplets";
+        } else if(value >= 600 && value < 800){
+            rain_var.innerHTML = "It's raining";
+        } else if(value >= 50 && value < 600){
+            rain_var.innerHTML = "Heavy raining";
+        } else if(value >= 0 && value < 50){
+            rain_var.innerHTML = "Metal on sensor";
+            rain_var.style.color = "red"
+        }
+
+        //MRC
+    }
+    };
+    SRCSRequest.open("GET", "getWeather", true);
+    SRCSRequest.send();
+}
+
+function getGeneral(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+    if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+    {
+        var angle = this.responseText
+        AA_var.innerHTML = angle
+        antenna_animation.style.transform = `rotate(${Number(angle)}deg)`
+        //isClockwise, hasJob
+    }
+    };
+    SRCSRequest.open("GET", "readGENERAL", true);
+    SRCSRequest.send();
+}
+
+function alignAntennaTo0(){
+    var SRCSRequest = new XMLHttpRequest();
+    SRCSRequest.onreadystatechange = function()
+    {
+        if(this.readyState == 4 && this.status == 200 && this.responseText != null)
+        {
+            //Antenna-algned,isClockwise:-1
+            alert("Antenna aligned to N.")
+            hideLoading()
+            let isClockwise = this.responseText.split(":")
+            if(isClockwise[1].trim() == "1"){
+                AD_var.innerHTML = "counter clock-wise"
+            }
+            else if(isClockwise[1].trim() == "-1"){
+                AD_var.innerHTML = "clock-wise"
+            } else
+            {
+                console.error(isClockwise, " error isClockwise")
+            }
+            hideLoading()
+        }
+    };
+    SRCSRequest.open("GET", "alignAntennaTo0", true); 
+    SRCSRequest.send();
+}
+
+function showLoading(){
+    popup_wrapper.style.cursor = "wait"
+    popup_div.style.display = "none"    
+    loading_popup_div.style.display = "flex"
+    setTimeout(() => {
+        loading_popup_div.style.opacity = "100%"
+    }, 30)
+}
+
+function hideLoading(){
+    loading_popup_div.style.opacity = "0%"
+    setTimeout(() => {
+        loading_popup_div.style.display = "none"
+    }, 30)
+    popup_wrapper.style.display = "none"
+    popup_wrapper.style.cursor = "default"
+}
+    </script>
+</body>
+</html>
